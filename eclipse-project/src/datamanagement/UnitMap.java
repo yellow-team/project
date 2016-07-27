@@ -1,2 +1,6 @@
 package datamanagement;
-public class UnitMap extends java.util.HashMap<String,IUnit> {}
+
+import java.util.HashMap;
+
+public class UnitMap extends HashMap<String, IUnit> {
+}
