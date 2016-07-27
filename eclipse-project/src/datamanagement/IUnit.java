@@ -1,7 +1,7 @@
 package datamanagement;
 
-public interface IUnit {
-
+public interface IUnit 
+{
     public String getUnitCode();
     public String getUnitName();
 
@@ -27,8 +27,8 @@ public interface IUnit {
 
     public String getGrade(float asg1, float asg2, float exam);
 
-    public void addStudentRecord(IStudentUnitRecord record );
-    public IStudentUnitRecord getStudentRecord(int studentID );
+    public void addStudentRecord(IStudentUnitRecord record);
+    public IStudentUnitRecord getStudentRecord(int studentID);
     
     public StudentUnitRecordList listStudentRecords();
 }
