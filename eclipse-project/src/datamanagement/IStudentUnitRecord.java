@@ -1,18 +1,19 @@
 package datamanagement;
-
-public interface IStudentUnitRecord {
-
+//also need to commit:
+//- gUI.java
+public interface IStudentUnitRecord 
+{
     public Integer getStudentID();
     public String getUnitCode();
 
-    public void setAsg1(float mark);
-    public float getAsg1();
+    public void setAsg1Score(float asg1Score);
+    public float getAsg1Score();
 
-    public void setAsg2(float mark);
-    public float getAsg2();
+    public void setAsg2Score(float asg2Score);
+    public float getAsg2Score();
 
-    public void setExam(float mark);
-    public float getExam();
+    public void setExamScore(float examScore);
+    public float getExamScore();
 
     public float getTotal();
 }

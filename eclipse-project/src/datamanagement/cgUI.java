@@ -8,8 +8,8 @@ import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class cgUI extends javax.swing.JFrame implements IUnitLister,
-		IStudentLister {
+public class cgUI extends javax.swing.JFrame implements IUnitLister, IStudentLister 
+{
 	private cgCTL ctl;
 	private javax.swing.DefaultComboBoxModel uM;
 	private javax.swing.DefaultComboBoxModel rM;
@@ -18,7 +18,8 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	float f3;
 	Integer sid;
 
-	public cgUI(cgCTL ctl) {
+	public cgUI(cgCTL ctl) 
+	{
 		this.ctl = ctl;
 		uM = new javax.swing.DefaultComboBoxModel(new String[0]);
 		rM = new javax.swing.DefaultComboBoxModel(new String[0]);
@@ -35,7 +36,8 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	 */
 	// <editor-fold defaultstate="collapsed"
 	// desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+	private void initComponents() 
+	{
 
 		jLabel1 = new javax.swing.JLabel();
 		jPanel1 = new javax.swing.JPanel();
@@ -67,8 +69,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 			}
 		});
 
-		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(
-				jPanel1);
+		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
 		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
@@ -101,8 +102,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 			}
 		});
 
-		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(
-				jPanel2);
+		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
 		jPanel2.setLayout(jPanel2Layout);
 		jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
@@ -222,8 +222,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabel5.setText("grade");
 
-		javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(
-				jPanel4);
+		javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
 		jPanel4.setLayout(jPanel4Layout);
 		jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
@@ -248,8 +247,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 					}
 				});
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
@@ -300,109 +298,148 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
+	private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) 
+	{// GEN-FIRST:event_jComboBox1ItemStateChanged
 		String cU = (String) jComboBox1.getSelectedItem();
 		Refresh3();
 		clearStudents();
-		if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-			if (cU.equals((String) jComboBox1.getItemAt(0))) {
+		if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) 
+		{
+			if (cU.equals((String) jComboBox1.getItemAt(0))) 
+			{
 				cU = "NONE";
 			}
 			ctl.unitSelected(cU);
 		}
 	}// GEN-LAST:event_jComboBox1ItemStateChanged
 
-	private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox2ItemStateChanged
+	private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) 
+	{// GEN-FIRST:event_jComboBox2ItemStateChanged
 		Refresh3();
 		String cS = (String) jComboBox2.getSelectedItem();
-		if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-			if (cS.equals((String) jComboBox2.getItemAt(0))) {
+		if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) 
+		{
+			if (cS.equals((String) jComboBox2.getItemAt(0))) 
+			{
 				sid = new Integer(0);
 				ctl.studentSelected(sid);
-			} else {
+			} 
+			else 
+			{
 				sid = new Integer(cS.split("\\s")[0]);
 			}
 			ctl.studentSelected(sid);
 		}
 	}// GEN-LAST:event_jComboBox2ItemStateChanged
 
-	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) 
+	{// GEN-FIRST:event_jButton3ActionPerformed
 		f1 = new Float(jTextField1.getText()).floatValue();
 		f2 = new Float(jTextField2.getText()).floatValue();
 		f3 = new Float(jTextField3.getText()).floatValue();
 		//lblErrMsg.setText("");
-		try {
+		try 
+		{
 			String s = ctl.checkGrade(f1, f2, f3);
 			jLabel5.setText(s);
 		}
-		catch (RuntimeException re) {
+		catch (RuntimeException re) 
+		{
 			jlabel6.setText(re.getMessage());
 		}
 	}// GEN-LAST:event_jButton3ActionPerformed
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) 
+	{// GEN-FIRST:event_jButton1ActionPerformed
 		ctl.enableChangeMarks();
 		jLabel5.setText("");
 		//lblErrMsg.setText("");
 	}// GEN-LAST:event_jButton1ActionPerformed
 
-	private void jTextFieldKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField1KeyTyped
+	private void jTextFieldKeyTyped(java.awt.event.KeyEvent evt) 
+	{// GEN-FIRST:event_jTextField1KeyTyped
 		jLabel5.setText("");
 		jlabel6.setText("");
+		
+		//The following prevents entering more than four characters (will 
+		//only ever be two digits, a decimal point, and one more digit)
+		if(jTextField1.getText().length() >= 4)
+		{
+			jTextField1.setText(jTextField1.getText().substring(0, 3));
+		}
+		if(jTextField2.getText().length() >= 4)
+		{
+			jTextField2.setText(jTextField2.getText().substring(0, 3));
+		}
+		if(jTextField3.getText().length() >= 4)
+		{
+			jTextField3.setText(jTextField3.getText().substring(0, 3));
+		}
 	}// GEN-LAST:event_jTextField1KeyTyped
 
-	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) 
+	{// GEN-FIRST:event_jButton2ActionPerformed
 		float asg1 = new Float(jTextField1.getText()).floatValue();
 		float asg2 = new Float(jTextField2.getText()).floatValue();
 		float exam = new Float(jTextField3.getText()).floatValue();
 		jlabel6.setText("");
-		try {
+		try 
+		{
 			ctl.saveGrade(asg1, asg2, exam);
 			//jButton3ActionPerformed(null);
 		}
-		catch (RuntimeException re) {
+		catch (RuntimeException re) 
+		{
 			jlabel6.setText(re.getMessage());
 		}
 	}// GEN-LAST:event_jButton2ActionPerformed
 
-	public void clearUnits() {
+	public void clearUnits() 
+	{
 		uM.removeAllElements();
 		uM.addElement("<none selected>");
 		clearStudents();
 	}
 
-	public void addUnit(IUnit u) {
+	public void addUnit(IUnit u) 
+	{
 		uM.addElement(u.getUnitCode());
 	}
 
-	public void setState1(boolean b) {
+	public void setState1(boolean b) 
+	{
 		jComboBox1.setEnabled(b);
 		jlabel6.setText("");
 	}
 
-	public void clearStudents() {
+	public void clearStudents() 
+	{
 		rM.removeAllElements();
 		rM.addElement("<none selected>");
 	}
 
-	public void addStudent(IStudent student) {
+	public void addStudent(IStudent student) 
+	{
 		rM.addElement(student.getID().toString() + " : "
 				+ student.getFirstName() + " " + student.getLastName());
 	}
 
-	public void setState2(boolean b) {
+	public void setState2(boolean b) 
+	{
 		jComboBox2.setEnabled(b);
 		jlabel6.setText("");
 	}
 
-	public void setRecord(IStudentUnitRecord record) {
-		jTextField1.setText(new Float(record.getAsg1()).toString());
-		jTextField2.setText(new Float(record.getAsg2()).toString());
-		jTextField3.setText(new Float(record.getExam()).toString());
+	public void setRecord(IStudentUnitRecord record) 
+	{
+		jTextField1.setText(new Float(record.getAsg1Score()).toString());
+		jTextField2.setText(new Float(record.getAsg2Score()).toString());
+		jTextField3.setText(new Float(record.getExamScore()).toString());
 		jLabel5.setText("");
 	}
 
-	public void Refresh3() {
+	public void Refresh3() 
+	{
 		jTextField1.setText("");
 		jTextField2.setText("");
 		jTextField3.setText("");
@@ -413,22 +450,26 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jTextField3.setEditable(false);
 	}
 
-	public void setState3(boolean b) {
+	public void setState3(boolean b) 
+	{
 		jButton2.setEnabled(b);
 	}
 
-	public void setState4(boolean b) {
+	public void setState4(boolean b) 
+	{
 		jButton1.setEnabled(b);
 		// gradeLB.setText("");
 	}
 
-	public void setState5(boolean b) {
+	public void setState5(boolean b) 
+	{
 		jTextField1.setEditable(b);
 		jTextField2.setEditable(b);
 		jTextField3.setEditable(b);
 	}
 
-	public void setState6(boolean b) {
+	public void setState6(boolean b) 
+	{
 		jButton3.setEnabled(b);
 	}
 

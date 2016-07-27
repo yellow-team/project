@@ -1,16 +1,19 @@
 package datamanagement;
 
-public class cgCTL {
+public class cgCTL 
+{
 
 	cgUI CGUI;
 	String cuc = null;
 	Integer currentStudentID = null;
 	boolean changed = false;
 
-	public cgCTL() {
+	public cgCTL() 
+	{
 	}
 
-	public void execute() {
+	public void execute() 
+	{
 		CGUI = new cgUI(this);
 		CGUI.setState1(false);
 
@@ -27,11 +30,13 @@ public class cgCTL {
 		CGUI.setState1(true);
 	}
 
-	public void unitSelected(String code) {
+	public void unitSelected(String code) 
+	{
 
 		if (code.equals("NONE"))
 			CGUI.setState2(false);
-		else {
+		else 
+		{
 			ListStudentsCTL lsCTL = new ListStudentsCTL();
 			lsCTL.listStudents(CGUI, code);
 			cuc = code;
@@ -40,9 +45,11 @@ public class cgCTL {
 		CGUI.setState3(false);
 	}
 
-	public void studentSelected(Integer id) {
+	public void studentSelected(Integer id) 
+	{
 		currentStudentID = id;
-		if (currentStudentID.intValue() == 0) {
+		if (currentStudentID.intValue() == 0) 
+		{
 			CGUI.Refresh3();
 			CGUI.setState3(false);
 			CGUI.setState4(false);
@@ -50,7 +57,8 @@ public class cgCTL {
 			CGUI.setState6(false);
 		}
 
-		else {
+		else 
+		{
 			IStudent s = StudentManager.get().getStudent(id);
 
 			IStudentUnitRecord r = s.getUnitRecord(cuc);
@@ -65,33 +73,36 @@ public class cgCTL {
 		}
 	}
 
-	public String checkGrade(float f, float g, float h) {
-		IUnit u = UnitManager.UM().getUnit(cuc);
+	public String checkGrade(float f, float g, float h) 
+	{
+		IUnit u = UnitManager.instance().getUnit(cuc);
 		String s = u.getGrade(f, g, h);
 		CGUI.setState4(true);
 		CGUI.setState5(false);
-		if (changed) {
+		if (changed) 
+		{
 			CGUI.setState6(true);
 		}
 		return s;
 	}
 
-	public void enableChangeMarks() {
+	public void enableChangeMarks() 
+	{
 		CGUI.setState4(false);
 		CGUI.setState6(false);
 		CGUI.setState5(true);
 		changed = true;
 	}
 
-	public void saveGrade(float asg1, float asg2, float exam) {
-
-		IUnit u = UnitManager.UM().getUnit(cuc);
+	public void saveGrade(float asg1Score, float asg2Score, float examScore) 
+	{
+		IUnit u = UnitManager.instance().getUnit(cuc);
 		IStudent s = StudentManager.get().getStudent(currentStudentID);
 
 		IStudentUnitRecord r = s.getUnitRecord(cuc);
-		r.setAsg1(asg1);
-		r.setAsg2(asg2);
-		r.setExam(exam);
+		r.setAsg1Score(asg1Score);
+		r.setAsg2Score(asg2Score);
+		r.setExamScore(examScore);
 		StudentUnitRecordManager.instance().saveRecord(r);
 		CGUI.setState4(true);
 		CGUI.setState5(false);
