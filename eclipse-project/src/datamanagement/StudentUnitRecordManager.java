@@ -21,7 +21,7 @@ return ir != null ? ir : createStudentUnitRecord(studentID, unitCode);}
 
     private IStudentUnitRecord createStudentUnitRecord( Integer uid, String sid ) {
         IStudentUnitRecord ir;
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
+        for (Element el : (List<Element>) XMLManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
         if (uid.toString().equals(el.getAttributeValue("sid")) && sid.equals(el.getAttributeValue("uid"))) {
                 ir = new StudentUnitRecord( new Integer(el.getAttributeValue("sid")),el.getAttributeValue("uid"),new Float(el.getAttributeValue("asg1")).floatValue(),new Float(el.getAttributeValue("asg2")).floatValue(),new Float(el.getAttributeValue("exam")).floatValue() );
                rm.put(ir.getStudentID().toString()+ir.getUnitCode(), ir);return ir;
@@ -32,7 +32,7 @@ throw new RuntimeException("DBMD: createStudent : student unit record not in fil
     StudentUnitRecordList recs = ur.get(unitCode);
     if ( recs != null ) return recs; 
         recs = new StudentUnitRecordList();
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
+        for (Element el : (List<Element>) XMLManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
     if (unitCode.equals(el.getAttributeValue("uid"))) recs.add(new StudentUnitRecordProxy( new Integer(el.getAttributeValue("sid")), el.getAttributeValue("uid")));
         }
         if ( recs.size() > 0 ) 
@@ -43,7 +43,7 @@ throw new RuntimeException("DBMD: createStudent : student unit record not in fil
 public StudentUnitRecordList getRecordsByStudent( Integer studentID ) {
     StudentUnitRecordList recs = sr.get(studentID);
     if ( recs != null ) return recs; recs = new StudentUnitRecordList();
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) 
+        for (Element el : (List<Element>) XMLManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) 
             if (studentID.toString().equals(el.getAttributeValue("sid"))) 
                 recs.add(new StudentUnitRecordProxy( new Integer(el.getAttributeValue("sid")), el.getAttributeValue("uid")));
                 if ( recs.size() > 0 ) 
@@ -52,7 +52,7 @@ public StudentUnitRecordList getRecordsByStudent( Integer studentID ) {
     }
 
     public void saveRecord( IStudentUnitRecord irec ) {
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
+        for (Element el : (List<Element>) XMLManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
             if (irec.getStudentID().toString().equals(el.getAttributeValue("sid")) && irec.getUnitCode().equals(el.getAttributeValue("uid"))) {
                 el.setAttribute("asg1", new Float(irec.getAsg1()).toString());
                 
@@ -60,7 +60,7 @@ public StudentUnitRecordList getRecordsByStudent( Integer studentID ) {
                 
         el.setAttribute("asg2", new Float(irec.getAsg2()).toString());
         el.setAttribute("exam", new Float(irec.getExam()).toString());
-        XMLManager.getXML().saveDocument(); //write out the XML file for continuous save
+        XMLManager.getInstance().saveDocument(); //write out the XML file for continuous save
         return;
 }}
         

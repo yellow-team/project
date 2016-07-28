@@ -31,7 +31,7 @@ public class UnitManager {
     private IUnit createUnit(String unitCode) {
         
         IUnit unitLikeObject;
-        List<Element> elementList = (List<Element>) XMLManager.getXML()
+        List<Element> elementList = (List<Element>) XMLManager.getInstance()
                                                         .getDocument()
                                                         .getRootElement()
                                                         .getChild("unitTable")
@@ -66,7 +66,7 @@ public class UnitManager {
         
         IUnit unitLikeObject;
         UnitMap unitMap           = new UnitMap();
-        List<Element> elementList = (List<Element>) XMLManager.getXML()
+        List<Element> elementList = (List<Element>) XMLManager.getInstance()
                                                         .getDocument()
                                                         .getRootElement()
                                                         .getChild("unitTable")
