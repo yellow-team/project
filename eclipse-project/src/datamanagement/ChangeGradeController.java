@@ -1,100 +1,119 @@
 package datamanagement;
 
-public class ChangeGradeController {
+public class ChangeGradeController
+{
+    ChangeGradeUI ui;
+    String        currentUnitCode  = null;
+    Integer       currentStudentID = null;
+    boolean       changed          = false;
 
-    ChangeGradeUI ui_;
-    String        currentUnitCode_  = null;
-    Integer       currentStudentID_ = null;
-    boolean       changed_          = false;
-
-    public ChangeGradeController() {
+    public ChangeGradeController()
+    {
     }
 
-    public void execute() {
-        ui_ = new ChangeGradeUI(this);
-        
-        ui_.setUnitComboBoxEnabled(false);
-        ui_.setStudentComboBoxEnabled(false);
-        ui_.setCheckGradeButtonEnabled(false);
-        ui_.setChangeMarksButtonEnabled(false);
-        ui_.setMarksTextFieldsEnabled(false);
-        ui_.setSaveChangesButtonEnabled(false);
-        
-        ui_.refresh();
+    
+    public void execute()
+    {
+        ui = new ChangeGradeUI(this);
+
+        ui.setUnitComboBoxEnabled(false);
+        ui.setStudentComboBoxEnabled(false);
+        ui.setCheckGradeButtonEnabled(false);
+        ui.setChangeMarksButtonEnabled(false);
+        ui.setMarksTextFieldsEnabled(false);
+        ui.setSaveChangesButtonEnabled(false);
+
+        ui.refresh();
 
         ListUnitsController listUnitsController = new ListUnitsController();
-        listUnitsController.listUnits(ui_);
-        ui_.setVisible(true);
-        ui_.setUnitComboBoxEnabled(true);
+        listUnitsController.listUnits(ui);
+        ui.setVisible(true);
+        ui.setUnitComboBoxEnabled(true);
     }
 
-    public void unitSelected(String unitCode) {
+    
+    public void unitSelected(String unitCode)
+    {
 
-        if (unitCode.equals("NONE")) {
-            ui_.setStudentComboBoxEnabled(false);
+        if (unitCode.equals("NONE"))
+        {
+            ui.setStudentComboBoxEnabled(false);
         }
-        else {
+        else
+        {
             ListStudentsController listStudentsController = new ListStudentsController();
-            listStudentsController.listStudents(ui_, unitCode);
-            currentUnitCode_ = unitCode;
-            ui_.setStudentComboBoxEnabled(true);
+            listStudentsController.listStudents(ui, unitCode);
+            currentUnitCode = unitCode;
+            ui.setStudentComboBoxEnabled(true);
         }
-        ui_.setCheckGradeButtonEnabled(false);
+        ui.setCheckGradeButtonEnabled(false);
     }
 
-    public void studentSelected(Integer studentId) {
-        currentStudentID_ = studentId;
-        if (currentStudentID_.intValue() == 0) {
-            ui_.refresh();
-            ui_.setCheckGradeButtonEnabled(false);
-            ui_.setChangeMarksButtonEnabled(false);
-            ui_.setMarksTextFieldsEnabled(false);
-            ui_.setSaveChangesButtonEnabled(false);
+    
+    public void studentSelected(Integer studentId)
+    {
+        currentStudentID = studentId;
+        if (currentStudentID.intValue() == 0)
+        {
+            ui.refresh();
+            ui.setCheckGradeButtonEnabled(false);
+            ui.setChangeMarksButtonEnabled(false);
+            ui.setMarksTextFieldsEnabled(false);
+            ui.setSaveChangesButtonEnabled(false);
         }
 
-        else {
-            IStudent student = StudentManager.getInstance().getStudent(studentId);
-            IStudentUnitRecord record = student.getUnitRecord(currentUnitCode_);
+        else
+        {
+            IStudent student = StudentManager.getInstance()
+                    .getStudent(studentId);
+            IStudentUnitRecord record = student.getUnitRecord(currentUnitCode);
 
-            ui_.setRecord(record);
-            ui_.setCheckGradeButtonEnabled(true);
-            ui_.setChangeMarksButtonEnabled(true);
-            ui_.setMarksTextFieldsEnabled(false);
-            ui_.setSaveChangesButtonEnabled(false);
-            changed_ = false;
+            ui.setRecord(record);
+            ui.setCheckGradeButtonEnabled(true);
+            ui.setChangeMarksButtonEnabled(true);
+            ui.setMarksTextFieldsEnabled(false);
+            ui.setSaveChangesButtonEnabled(false);
+            changed = false;
         }
     }
 
-    public String checkGrade(float asg1Mark, float asg2Mark, float examMark) {
-        IUnit unit = UnitManager.getInstance().getUnit(currentUnitCode_);
+    
+    public String checkGrade(float asg1Mark, float asg2Mark, float examMark)
+    {
+        IUnit unit = UnitManager.getInstance().getUnit(currentUnitCode);
         String student = unit.computeGrade(asg1Mark, asg2Mark, examMark);
-        ui_.setChangeMarksButtonEnabled(true);
-        ui_.setMarksTextFieldsEnabled(false);
-        if (changed_) {
-            ui_.setSaveChangesButtonEnabled(true);
+        ui.setChangeMarksButtonEnabled(true);
+        ui.setMarksTextFieldsEnabled(false);
+        if (changed)
+        {
+            ui.setSaveChangesButtonEnabled(true);
         }
         return student;
     }
 
-    public void enableChangeMarks() {
-        ui_.setChangeMarksButtonEnabled(false);
-        ui_.setSaveChangesButtonEnabled(false);
-        ui_.setMarksTextFieldsEnabled(true);
-        changed_ = true;
+    
+    public void enableChangeMarks()
+    {
+        ui.setChangeMarksButtonEnabled(false);
+        ui.setSaveChangesButtonEnabled(false);
+        ui.setMarksTextFieldsEnabled(true);
+        changed = true;
     }
 
-    public void saveGrade(float asg1Mark, float asg2Mark, float examMark) {
+    
+    public void saveGrade(float asg1Mark, float asg2Mark, float examMark)
+    {
 
-        IUnit u = UnitManager.getInstance().getUnit(currentUnitCode_);
-        IStudent s = StudentManager.getInstance().getStudent(currentStudentID_);
+        IUnit u = UnitManager.getInstance().getUnit(currentUnitCode);
+        IStudent s = StudentManager.getInstance().getStudent(currentStudentID);
 
-        IStudentUnitRecord record = s.getUnitRecord(currentUnitCode_);
+        IStudentUnitRecord record = s.getUnitRecord(currentUnitCode);
         record.setAsg1(asg1Mark);
         record.setAsg2(asg2Mark);
         record.setExam(examMark);
         StudentUnitRecordManager.instance().saveRecord(record);
-        ui_.setChangeMarksButtonEnabled(true);
-        ui_.setMarksTextFieldsEnabled(false);
-        ui_.setSaveChangesButtonEnabled(false);
+        ui.setChangeMarksButtonEnabled(true);
+        ui.setMarksTextFieldsEnabled(false);
+        ui.setSaveChangesButtonEnabled(false);
     }
 }

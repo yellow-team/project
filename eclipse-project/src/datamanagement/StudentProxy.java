@@ -1,48 +1,57 @@
 package datamanagement;
 
-public class StudentProxy implements IStudent {
-    private Integer        studentId_;
-    private String         firstName_;
+public class StudentProxy implements IStudent
+{
+    private Integer        studentId;
+    private String         firstName;
+    private String         lastName;
+    private StudentManager studentManager;
 
-    private String         lastName_;
-    private StudentManager studentManager_;
-
-    public StudentProxy(Integer id, String firstName, String lastName) {
-        studentId_      = id;
-        firstName_      = firstName;
-        lastName_       = lastName;
-        studentManager_ = StudentManager.getInstance();
+    public StudentProxy(Integer id, String firstName, String lastName)
+    {
+        this.studentId = id;
+        this.firstName = firstName;
+        this.lastName  = lastName;
+        studentManager = StudentManager.getInstance();
     }
 
-    public Integer getID() {
-        return studentId_;
+    public Integer getID()
+    {
+        return studentId;
     }
 
-    public String getFirstName() {
-        return firstName_;
+    public String getFirstName()
+    {
+        return firstName;
     }
 
-    public String getLastName() {
-        return lastName_;
+    public String getLastName()
+    {
+        return lastName;
     }
 
-    public void setFirstName(String firstName) {
-        studentManager_.getStudent(studentId_).setFirstName(firstName);
+    public void setFirstName(String firstName)
+    {
+        studentManager.getStudent(studentId).setFirstName(firstName);
     }
 
-    public void setLastName(String lastName) {
-        studentManager_.getStudent(studentId_).setLastName(lastName);
+    public void setLastName(String lastName)
+    {
+        studentManager.getStudent(studentId).setLastName(lastName);
     }
 
-    public void addUnitRecord(IStudentUnitRecord record) {
-        studentManager_.getStudent(studentId_).addUnitRecord(record);
+    public void addUnitRecord(IStudentUnitRecord record)
+    {
+        studentManager.getStudent(studentId).addUnitRecord(record);
     }
 
-    public IStudentUnitRecord getUnitRecord(String unitCode) {
-        return studentManager_.getStudent(studentId_).getUnitRecord(unitCode);
+    public IStudentUnitRecord getUnitRecord(String unitCode)
+    {
+        return studentManager.getStudent(studentId).getUnitRecord(unitCode);
     }
 
-    public StudentUnitRecordList getUnitRecords() {
-        return studentManager_.getStudent(studentId_).getUnitRecords();
+    public StudentUnitRecordList getUnitRecords()
+    {
+        return studentManager.getStudent(studentId).getUnitRecords();
     }
 }

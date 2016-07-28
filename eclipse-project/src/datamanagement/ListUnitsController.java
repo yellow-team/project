@@ -1,16 +1,20 @@
 package datamanagement;
 
-public class ListUnitsController {
-    private UnitManager unitManager_;
+public class ListUnitsController
+{
+    private UnitManager unitManager;
 
-    public ListUnitsController() {
-        unitManager_ = UnitManager.getInstance();
+    public ListUnitsController()
+    {
+        unitManager = UnitManager.getInstance();
     }
 
-    public void listUnits(IUnitLister unitLister) {
+    public void listUnits(IUnitLister unitLister)
+    {
         unitLister.clearUnits();
-        UnitMap unitMap = unitManager_.getUnits();
-        for (String unitCode : unitMap.keySet()) {
+        UnitMap unitMap = unitManager.getUnits();
+        for (String unitCode : unitMap.keySet())
+        {
             unitLister.addUnit(unitMap.get(unitCode));
         }
     }
