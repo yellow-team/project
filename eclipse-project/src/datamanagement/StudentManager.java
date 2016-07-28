@@ -5,6 +5,12 @@ import org.jdom.*;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Singleton class that manages Student objects and their proxies.
+ * Reads from Student data stored as XML.
+ * Provides StudentMaps of proxied Student objects for Units.
+ *
+ */
 public class StudentManager
 {
     private final static StudentManager self = new StudentManager();
@@ -12,17 +18,22 @@ public class StudentManager
     private StudentMap                  studentMap;
     private HashMap<String, StudentMap> unitToStudentMapMap;
 
+    
     public static StudentManager getInstance()
     {
         return self;
     }
 
+    
+    
     private StudentManager()
     {
-        studentMap          = new StudentMap();
-        unitToStudentMapMap = new HashMap<String, StudentMap>();
+        this.studentMap          = new StudentMap();
+        this.unitToStudentMapMap = new HashMap<String, StudentMap>();
     }
 
+    
+    
     public IStudent getStudent(Integer id)
     {
         IStudent student = studentMap.get(id);
@@ -37,6 +48,8 @@ public class StudentManager
         }
     }
 
+    
+    
     private Element getStudentElement(Integer id)
     {
         for (Element el : (List<Element>) XMLManager.getInstance().getDocument()
@@ -52,6 +65,8 @@ public class StudentManager
         return null;
     }
 
+    
+    
     private IStudent createStudent(Integer id)
     {
         IStudent student;
@@ -72,6 +87,8 @@ public class StudentManager
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
 
+    
+    
     private IStudent createStudentProxy(Integer id)
     {
         Element el = getStudentElement(id);
@@ -82,6 +99,14 @@ public class StudentManager
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
 
+    
+    /**
+     * Given a unit code, retrieves the associated StudentMap.
+     * If the map does not exist, a StudentMap of proxied Student objects
+     * is generated
+     * @param unitCode The code of the Unit to get students for.
+     * @return A StudentMap of proxied Student objects for the given unit code.
+     */
     public StudentMap getStudentsByUnit(String unitCode)
     {
         StudentMap studentMap = unitToStudentMapMap.get(unitCode);

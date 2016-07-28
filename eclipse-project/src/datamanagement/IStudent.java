@@ -1,5 +1,9 @@
 package datamanagement;
 
+/**
+ * Interface for Student objects
+ *
+ */
 public interface IStudent
 {
 
@@ -15,6 +19,6 @@ public interface IStudent
 
     public IStudentUnitRecord getUnitRecord(String unitCode);
 
-    public StudentUnitRecordList getUnitRecords();
+    public StudentUnitRecordList getRecordList();
 
 }

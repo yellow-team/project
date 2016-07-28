@@ -1,6 +1,10 @@
 package datamanagement;
 
-/** @author jtulip */
+/**
+ * Interface that allows Student-like objects to be added to lists in the UI.
+ * @author jtulip
+ *
+ */
 
 public interface IStudentLister
 {

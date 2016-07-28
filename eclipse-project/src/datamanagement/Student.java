@@ -1,5 +1,11 @@
 package datamanagement;
 
+/**
+ * Representation of a Student
+ * Contains the student's ID number, First and Last name,
+ * and a list of records (marks for assessments in Units)
+ *
+ */
 public class Student implements IStudent
 {
 
@@ -14,7 +20,7 @@ public class Student implements IStudent
 
         this.id_       = id;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.lastName  = lastName;
 
         if (recordList == null)
         {
@@ -31,32 +37,44 @@ public class Student implements IStudent
         return this.id_;
     }
 
+    
+    
     public String getFirstName()
     {
         return firstName;
     }
 
+    
+    
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
 
+    
+    
     public String getLastName()
     {
         return lastName;
     }
 
+    
+    
     public void setLastName(String lastName)
     {
 
         this.lastName = lastName;
     }
 
+    
+    
     public void addUnitRecord(IStudentUnitRecord record)
     {
         recordList.add(record);
     }
 
+    
+    
     public IStudentUnitRecord getUnitRecord(String unitCode)
     {
         for (IStudentUnitRecord record : recordList)
@@ -70,7 +88,9 @@ public class Student implements IStudent
         return null;
     }
 
-    public StudentUnitRecordList getUnitRecords()
+    
+    
+    public StudentUnitRecordList getRecordList()
     {
         return recordList;
     }

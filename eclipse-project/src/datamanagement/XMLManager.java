@@ -8,6 +8,10 @@ import org.jdom.output.XMLOutputter;
 import java.io.IOException;
 import org.jdom.JDOMException;
 
+/**
+ * Singleton to read and write an XML 'database'.
+ *
+ */
 public class XMLManager
 {
     private final static XMLManager self = new XMLManager();

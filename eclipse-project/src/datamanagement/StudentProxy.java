@@ -1,5 +1,9 @@
 package datamanagement;
 
+/**
+ * Proxy class for Student objects managed by StudentManager singleton.
+ *
+ */
 public class StudentProxy implements IStudent
 {
     private Integer        studentId;
@@ -50,8 +54,8 @@ public class StudentProxy implements IStudent
         return studentManager.getStudent(studentId).getUnitRecord(unitCode);
     }
 
-    public StudentUnitRecordList getUnitRecords()
+    public StudentUnitRecordList getRecordList()
     {
-        return studentManager.getStudent(studentId).getUnitRecords();
+        return studentManager.getStudent(studentId).getRecordList();
     }
 }

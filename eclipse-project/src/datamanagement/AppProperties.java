@@ -3,6 +3,10 @@ package datamanagement;
 import java.util.*;
 import java.io.*;
 
+/**
+ * Singleton class allowing access to externally stored property file.
+ *
+ */
 public class AppProperties
 {
     private final static AppProperties self = new AppProperties();;

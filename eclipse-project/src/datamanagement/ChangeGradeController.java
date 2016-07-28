@@ -1,5 +1,10 @@
 package datamanagement;
 
+/**
+ * Controller object that manages the state transitions of the UI,
+ * e.g. enables/disables buttons, 
+ *
+ */
 public class ChangeGradeController
 {
     ChangeGradeUI ui;
@@ -11,6 +16,7 @@ public class ChangeGradeController
     {
     }
 
+    
     
     public void execute()
     {
@@ -32,7 +38,8 @@ public class ChangeGradeController
     }
 
     
-    public void unitSelected(String unitCode)
+    
+    public void selectUnit(String unitCode)
     {
 
         if (unitCode.equals("NONE"))
@@ -50,7 +57,8 @@ public class ChangeGradeController
     }
 
     
-    public void studentSelected(Integer studentId)
+    
+    public void selectStudent(Integer studentId)
     {
         currentStudentID = studentId;
         if (currentStudentID.intValue() == 0)
@@ -78,19 +86,28 @@ public class ChangeGradeController
     }
 
     
+    /**
+     * Computes the grade string from the given marks.
+     * @param asg1Mark Mark for Assignment 1
+     * @param asg2Mark Mark for Assignment 2
+     * @param examMark Mark for the exam
+     * @return A String of the grade achieved with these marks 
+     * (FL, AE, PS, CR, DN, HD)
+     */
     public String checkGrade(float asg1Mark, float asg2Mark, float examMark)
     {
         IUnit unit = UnitManager.getInstance().getUnit(currentUnitCode);
-        String student = unit.computeGrade(asg1Mark, asg2Mark, examMark);
+        String grade = unit.computeGrade(asg1Mark, asg2Mark, examMark);
         ui.setChangeMarksButtonEnabled(true);
         ui.setMarksTextFieldsEnabled(false);
         if (changed)
         {
             ui.setSaveChangesButtonEnabled(true);
         }
-        return student;
+        return grade;
     }
 
+    
     
     public void enableChangeMarks()
     {
@@ -101,16 +118,26 @@ public class ChangeGradeController
     }
 
     
+    /**
+     * Finds the StudentUnitRecord with the currently selected Unit and Student,
+     * updates it with the provided marks, and tells the StudentUnitRecord
+     * manager singleton to save the record.
+     * @param asg1Mark Mark for Assignment 1
+     * @param asg2Mark Mark for Assignment 2
+     * @param examMark Mark for the exam
+     */
     public void saveGrade(float asg1Mark, float asg2Mark, float examMark)
     {
+        IUnit unit = UnitManager.getInstance().getUnit(currentUnitCode);
+        IStudent student = StudentManager.getInstance()
+                                            .getStudent(currentStudentID);
 
-        IUnit u = UnitManager.getInstance().getUnit(currentUnitCode);
-        IStudent s = StudentManager.getInstance().getStudent(currentStudentID);
-
-        IStudentUnitRecord record = s.getUnitRecord(currentUnitCode);
+        IStudentUnitRecord record = student.getUnitRecord(currentUnitCode);
+        
         record.setAsg1(asg1Mark);
         record.setAsg2(asg2Mark);
         record.setExam(examMark);
+        
         StudentUnitRecordManager.instance().saveRecord(record);
         ui.setChangeMarksButtonEnabled(true);
         ui.setMarksTextFieldsEnabled(false);

@@ -23,6 +23,12 @@ import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * User interface for the application.
+ * Most of this file is generated automatically from the visual window-builder
+ * used in the Eclipse Java IDE.
+ *
+ */
 public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
 {
     private ChangeGradeController controller;
@@ -369,35 +375,35 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
 
     private void unitComboBoxItemStateChanged(java.awt.event.ItemEvent evt)
     {// GEN-FIRST:event_jComboBox1ItemStateChanged
-        String cU = (String) unitComboBox.getSelectedItem();
+        String unit = (String) unitComboBox.getSelectedItem();
         refresh();
         clearStudents();
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
         {
-            if (cU.equals((String) unitComboBox.getItemAt(0)))
+            if (unit.equals((String) unitComboBox.getItemAt(0)))
             {
-                cU = "NONE";
+                unit = "NONE";
             }
-            controller.unitSelected(cU);
+            controller.selectUnit(unit);
         }
     }// GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void studentComboBoxItemStateChanged(java.awt.event.ItemEvent evt)
     {// GEN-FIRST:event_jComboBox2ItemStateChanged
         refresh();
-        String cS = (String) studentComboBox.getSelectedItem();
+        String student = (String) studentComboBox.getSelectedItem();
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED)
         {
-            if (cS.equals((String) studentComboBox.getItemAt(0)))
+            if (student.equals((String) studentComboBox.getItemAt(0)))
             {
                 studentId = new Integer(0);
-                controller.studentSelected(studentId);
+                controller.selectStudent(studentId);
             }
             else
             {
-                studentId = new Integer(cS.split("\\s")[0]);
+                studentId = new Integer(student.split("\\s")[0]);
             }
-            controller.studentSelected(studentId);
+            controller.selectStudent(studentId);
         }
     }// GEN-LAST:event_jComboBox2ItemStateChanged
 
@@ -443,7 +449,9 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
         
         try
         {
-            controller.saveGrade(changedAsg1Mark, changedAsg2Mark, changedExamMark);
+            controller.saveGrade(changedAsg1Mark, 
+                                 changedAsg2Mark, 
+                                 changedExamMark);
         }
         catch (RuntimeException re)
         {
