@@ -4,7 +4,7 @@ public class ListStudentsController {
     private StudentManager studentManager_;
 
     public ListStudentsController() {
-        studentManager_ = StudentManager.get();
+        studentManager_ = StudentManager.getInstance();
     }
 
     public void listStudents(IStudentLister lister, String unitCode) {

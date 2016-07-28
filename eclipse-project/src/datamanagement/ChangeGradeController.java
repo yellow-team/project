@@ -53,7 +53,7 @@ public class ChangeGradeController {
         }
 
         else {
-            IStudent student = StudentManager.get().getStudent(studentId);
+            IStudent student = StudentManager.getInstance().getStudent(studentId);
             IStudentUnitRecord record = student.getUnitRecord(currentUnitCode_);
 
             ui_.setRecord(record);
@@ -86,7 +86,7 @@ public class ChangeGradeController {
     public void saveGrade(float asg1Mark, float asg2Mark, float examMark) {
 
         IUnit u = UnitManager.getInstance().getUnit(currentUnitCode_);
-        IStudent s = StudentManager.get().getStudent(currentStudentID_);
+        IStudent s = StudentManager.getInstance().getStudent(currentStudentID_);
 
         IStudentUnitRecord record = s.getUnitRecord(currentUnitCode_);
         record.setAsg1(asg1Mark);
