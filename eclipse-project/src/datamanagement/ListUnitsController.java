@@ -16,7 +16,7 @@ public class ListUnitsController
     /**
      * Retrieves a map of proxied Units from the UnitManager singleton
      * and provides them to the UI through the IUnitLister interface.
-     * @param unitLister
+     * @param unitLister The object implementing unitListing (i.e. the UI).
      */
     public void listUnits(IUnitLister unitLister)
     {
