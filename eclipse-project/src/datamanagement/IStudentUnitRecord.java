@@ -1,6 +1,5 @@
 package datamanagement;
-//also need to commit:
-//- gUI.java
+
 public interface IStudentUnitRecord 
 {
     public Integer getStudentID();

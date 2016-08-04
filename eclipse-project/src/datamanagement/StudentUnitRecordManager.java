@@ -9,6 +9,7 @@ public class StudentUnitRecordManager
 	private StudentUnitRecordMap studentUnitRecordMap; //changed rm->studentUnitRecordMap
     private java.util.HashMap<String,StudentUnitRecordList> mapByUnitCode; //changed ur->mapByUnitCode
     private java.util.HashMap<Integer,StudentUnitRecordList> mapByStudentId; //changed sr->mapByStudentId
+    
     public static StudentUnitRecordManager instance() 
     {
         if (self == null ) 
@@ -17,24 +18,37 @@ public class StudentUnitRecordManager
         }
         return self;
     }
+    
     private StudentUnitRecordManager() 
     {
         studentUnitRecordMap = new StudentUnitRecordMap();
         mapByUnitCode = new java.util.HashMap<>();
         mapByStudentId = new java.util.HashMap<>();
     }
+    
     public IStudentUnitRecord getStudentUnitRecord(Integer studentID, String unitCode) 
     {
     	IStudentUnitRecord iStudentUnitRecord = studentUnitRecordMap.get(studentID, unitCode);
     	return iStudentUnitRecord != null ? iStudentUnitRecord : createStudentUnitRecord(studentID, unitCode);
     }
 
-    private IStudentUnitRecord createStudentUnitRecord(Integer unitId, String studentId) 
+    /**
+	 * Goes through the XML file of records to find the data corresponding to the given unit code and student ID.
+	 * It then creates and returns and object of type IStudentUnitRecord (this class simply associates the two)
+	 * with these details. It also places the object in a map which has a key of student ID concatenated with unit code
+	 * (of which there is only one, because StudentUnitRecordManager is a singleton class).
+	 * 
+	 * @param unitCode This is the unit code (unit being taken by student given by studentId) to find in the records
+	 * @param studentId This is the student ID to find in the records (student taking unit given by unitCode)
+	 * @return Object of type IStudentUnitRecord that associates the unit code and student ID if it exists in the XML record
+	 * @exception RuntimException if no association between the given unit code and student ID exists.
+	 */
+    private IStudentUnitRecord createStudentUnitRecord(Integer unitCode, String studentId) 
     {
         IStudentUnitRecord iStudentUnitRecord;
         for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) 
         {
-        	if (unitId.toString().equals(el.getAttributeValue(Constants.STUDENT_ID)) && studentId.equals(el.getAttributeValue(Constants.UNIT_ID))) 
+        	if (unitCode.toString().equals(el.getAttributeValue(Constants.STUDENT_ID)) && studentId.equals(el.getAttributeValue(Constants.UNIT_ID))) 
         	{
         		Integer sid_el = new Integer(el.getAttributeValue(Constants.STUDENT_ID));
         		String uid_el = el.getAttributeValue(Constants.UNIT_ID);
@@ -50,6 +64,14 @@ public class StudentUnitRecordManager
         throw new RuntimeException("DBMD: createStudent : student unit record not in file");
     }
     
+    /**
+     * Looks in the map of student/unit association records that is organised with unit code as the key. If
+     * it doesn't exit, it looks through the XML file to find them, and adds them to the map in case they
+     * need to be looked up later, then it returns them.
+     * 
+     * @param unitCode Key to look up
+     * @return StudentUnitRecordList of all associations between students and the given unit code.
+     */
     public StudentUnitRecordList getRecordsByUnit(String unitCode) 
     {
     	StudentUnitRecordList recs = mapByUnitCode.get(unitCode);
@@ -60,7 +82,10 @@ public class StudentUnitRecordManager
         recs = new StudentUnitRecordList();
         for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) 
         {
-        	if (unitCode.equals(el.getAttributeValue(Constants.UNIT_ID))) recs.add(new StudentUnitRecordProxy( new Integer(el.getAttributeValue(Constants.STUDENT_ID)), el.getAttributeValue(Constants.UNIT_ID)));
+        	if (unitCode.equals(el.getAttributeValue(Constants.UNIT_ID))) 
+    		{
+    			recs.add(new StudentUnitRecordProxy( new Integer(el.getAttributeValue(Constants.STUDENT_ID)), el.getAttributeValue(Constants.UNIT_ID)));
+    		}
         }
         if (recs.size() > 0)
         {
@@ -69,6 +94,14 @@ public class StudentUnitRecordManager
         return recs;
     }
 
+    /**
+     * Looks in the map of student/unit association records that is organised with student ID as the key. If
+     * it doesn't exit, it looks through the XML file to find them, and adds them to the map in case they
+     * need to be looked up later, then it returns them.
+     * 
+     * @param studentId Key to look up
+     * @return StudentUnitRecordList of all associations between units and the student ID given.
+     */
     public StudentUnitRecordList getRecordsByStudent(Integer studentID) 
     {
     	StudentUnitRecordList recs = mapByStudentId.get(studentID);
@@ -91,6 +124,13 @@ public class StudentUnitRecordManager
         return recs;
     }
 
+    /**
+     * Updates exam and assignment results in the XML records file. The student and unit association
+     * has to already exist.
+     * 
+     * @param irec An IStudentUnitRecord that associates a unit and student along with their exam/assignment results.
+     * @exception RuntimeException if the student/unit association does not exist.
+     */
     public void saveRecord(IStudentUnitRecord irec) 
     {
         for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) 

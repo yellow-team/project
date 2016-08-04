@@ -1,12 +1,12 @@
 package datamanagement;
 
 
-//This class links a student with a unit along with the results for that unit.
+
 public class StudentUnitRecord implements IStudentUnitRecord
 {
-	private Integer studentId; //changed sid->studentId
-	private String unitCode; //changed uc->unitCode
-	private float asg1Score, asg2Score, examScore; //changed a1->asg1Score, a2->asg2Score, exam->examScore
+	private Integer studentId;
+	private String unitCode;
+	private float asg1Score, asg2Score, examScore;
 
 	public StudentUnitRecord(Integer studentId, String unitCode, float asg1Score, float asg2Score, float examScore) 
 	{
