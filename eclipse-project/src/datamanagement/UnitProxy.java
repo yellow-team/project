@@ -1,9 +1,9 @@
 package datamanagement;
 public class UnitProxy implements IUnit 
 {
-	private String unitCode; //changed UC->unitCode
-    private String unitName; //changed un->unitName
-    UnitManager unitManager; //changed um->unitManager
+	private String unitCode;
+    private String unitName;
+    UnitManager unitManager;
 
     public UnitProxy(String unitCode, String unitName) 
     {
@@ -19,9 +19,9 @@ public class UnitProxy implements IUnit
     { 
         return this.unitName; 
     }
-    public void setPsCutoff1(float cutoff) 
+    public void setPsCutoff(float cutoff) 
     {
-        unitManager.getUnit(unitCode).setPsCutoff1(cutoff);
+        unitManager.getUnit(unitCode).setPsCutoff(cutoff);
     }
     public float getPsCutoff() 
     {
@@ -40,9 +40,9 @@ public class UnitProxy implements IUnit
     {
     	unitManager.getUnit(unitCode).setDiCutoff(cutoff);
 	}
-    public float getDiCuttoff() 
+    public float getDiCutoff() 
     {
-    	return unitManager.getUnit(unitCode).getDiCuttoff();
+    	return unitManager.getUnit(unitCode).getDiCutoff();
 	}
     public void setHdCutoff(float cutoff) 
     {
@@ -72,9 +72,9 @@ public class UnitProxy implements IUnit
     {
     	return unitManager.getUnit(unitCode).getStudentRecord(s);
 	}
-    public StudentUnitRecordList listStudentRecords() 
+    public StudentUnitRecordList getStudentRecordList() 
     {
-    	return unitManager.getUnit(unitCode).listStudentRecords();
+    	return unitManager.getUnit(unitCode).getStudentRecordList();
     }
     public int getAsg1Weight() 
     {
@@ -91,6 +91,5 @@ public class UnitProxy implements IUnit
     public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt) 
     {
     	unitManager.getUnit(unitCode).setAssessmentWeights(asg1Wgt, asg2Wgt, examWgt);
-	
     }
 }

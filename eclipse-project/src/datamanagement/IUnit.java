@@ -5,13 +5,14 @@ public interface IUnit
     public String getUnitCode();
     public String getUnitName();
 
+    //TODO: fix variable names
     public float getPsCutoff();
-    public void  setPsCutoff1(float cutoff);
+    public void  setPsCutoff(float cutoff);
 
     public float getCrCutoff();
     public void  setCrCutoff(float cutoff);
 
-    public float getDiCuttoff();    
+    public float getDiCutoff();    
     public void  setDiCutoff(float cutoff);
 
     public float getHdCutoff();
@@ -30,5 +31,5 @@ public interface IUnit
     public void addStudentRecord(IStudentUnitRecord record);
     public IStudentUnitRecord getStudentRecord(int studentID);
     
-    public StudentUnitRecordList listStudentRecords();
+    public StudentUnitRecordList getStudentRecordList();
 }
