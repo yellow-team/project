@@ -4,7 +4,7 @@ public class ListUnitsCTL
     private UnitManager um;
     public ListUnitsCTL() 
     {
-        um = UnitManager.instance();
+        um = UnitManager.getInstance();
     }
     public void listUnits(IUnitLister lister) 
     {
