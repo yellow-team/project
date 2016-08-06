@@ -13,17 +13,19 @@ public class Unit implements IUnit
 
     private StudentUnitRecordList studentUnitRecordList;
 
-    public Unit(String UC, String un, float f1, float f2, float f3, float f4, float f5, int i1, int i2, int i3, StudentUnitRecordList rl)
+    public Unit(String unitCode, String unitName, float psCutoff, float crCutoff,
+    		float diCutoff, float hdCutoff, float aeCutoff, int asg1Weight, int asg2Weight, int examWeight,
+    		StudentUnitRecordList studentUnitRecordList)
     {
-        unitCode = UC;
-        unitName = un;
-        psCutoff = f1;
-        crCutoff = f2;
-        diCutoff = f3;
-        hdCutoff = f4;
-        aeCutoff = f5;
-        setAssessmentWeights(i1, i2, i3);
-        studentUnitRecordList = rl == null ? new StudentUnitRecordList() : rl;
+        this.unitCode = unitCode;
+        this.unitName = unitName;
+        this.psCutoff = psCutoff;
+        this.crCutoff = crCutoff;
+        this.diCutoff = diCutoff;
+        this.hdCutoff = hdCutoff;
+        this.aeCutoff = aeCutoff;
+        setAssessmentWeights(asg1Weight, asg2Weight, examWeight);
+        this.studentUnitRecordList = studentUnitRecordList == null ? new StudentUnitRecordList() : studentUnitRecordList;
     }
 
     public String getUnitCode()
