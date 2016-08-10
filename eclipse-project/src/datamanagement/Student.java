@@ -9,7 +9,7 @@ package datamanagement;
 public class Student implements IStudent
 {
 
-    private Integer               id_;
+    private Integer               id;
     private String                firstName;
     private String                lastName;
     private StudentUnitRecordList recordList;
@@ -17,8 +17,7 @@ public class Student implements IStudent
     public Student(Integer id, String firstName, String lastName,
             StudentUnitRecordList recordList)
     {
-
-        this.id_       = id;
+        this.id        = id;
         this.firstName = firstName;
         this.lastName  = lastName;
 
@@ -31,50 +30,48 @@ public class Student implements IStudent
             this.recordList = recordList;
         }
     }
-
+    
+    
     public Integer getID()
     {
-        return this.id_;
+        return this.id;
     }
-
     
     
     public String getFirstName()
     {
         return firstName;
     }
-
     
     
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
-
     
     
     public String getLastName()
     {
         return lastName;
     }
-
     
     
     public void setLastName(String lastName)
     {
-
         this.lastName = lastName;
     }
-
     
     
     public void addUnitRecord(IStudentUnitRecord record)
     {
         recordList.add(record);
     }
-
     
-    
+    /**
+     * Looks up an IStudentUnitRecord given the unitCode
+     * @param unitCode the code of the Unit to look up
+     * @return The first matching IStudentUnitRecord, or null if no match.
+     */
     public IStudentUnitRecord getUnitRecord(String unitCode)
     {
         for (IStudentUnitRecord record : recordList)
@@ -84,10 +81,8 @@ public class Student implements IStudent
                 return record;
             }
         }
-
         return null;
     }
-
     
     
     public StudentUnitRecordList getRecordList()

@@ -2,7 +2,7 @@ package datamanagement;
 
 /**
  * Controller object that manages the state transitions of the UI,
- * e.g. enables/disables buttons, 
+ * e.g. enables/disables buttons and text fields.
  *
  */
 public class ChangeGradeCTL
@@ -11,37 +11,36 @@ public class ChangeGradeCTL
     String        currentUnitCode  = null;
     Integer       currentStudentID = null;
     boolean       changed          = false;
-
+    
     public ChangeGradeCTL()
     {
     }
-
+    
     
     
     public void execute()
     {
         ui = new ChangeGradeUI(this);
-
+        
         ui.setUnitComboBoxEnabled(false);
         ui.setStudentComboBoxEnabled(false);
         ui.setCheckGradeButtonEnabled(false);
         ui.setChangeMarksButtonEnabled(false);
         ui.setMarksTextFieldsEnabled(false);
         ui.setSaveChangesButtonEnabled(false);
-
+        
         ui.refresh();
-
+        
         ListUnitsCTL listUnitsController = new ListUnitsCTL();
         listUnitsController.listUnits(ui);
         ui.setVisible(true);
         ui.setUnitComboBoxEnabled(true);
     }
-
+    
     
     
     public void selectUnit(String unitCode)
     {
-
         if (unitCode.equals("NONE"))
         {
             ui.setStudentComboBoxEnabled(false);
@@ -55,7 +54,7 @@ public class ChangeGradeCTL
         }
         ui.setCheckGradeButtonEnabled(false);
     }
-
+    
     
     
     public void selectStudent(Integer studentId)
@@ -69,13 +68,13 @@ public class ChangeGradeCTL
             ui.setMarksTextFieldsEnabled(false);
             ui.setSaveChangesButtonEnabled(false);
         }
-
+        
         else
         {
             IStudent student = StudentManager.getInstance()
                     .getStudent(studentId);
             IStudentUnitRecord record = student.getUnitRecord(currentUnitCode);
-
+            
             ui.setRecord(record);
             ui.setCheckGradeButtonEnabled(true);
             ui.setChangeMarksButtonEnabled(true);
@@ -84,7 +83,7 @@ public class ChangeGradeCTL
             changed = false;
         }
     }
-
+    
     
     /**
      * Computes the grade string from the given marks.
@@ -106,7 +105,7 @@ public class ChangeGradeCTL
         }
         return grade;
     }
-
+    
     
     
     public void enableChangeMarks()

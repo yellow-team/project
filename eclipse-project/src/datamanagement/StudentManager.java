@@ -23,7 +23,6 @@ public class StudentManager
     {
         return self;
     }
-
     
     
     private StudentManager()
@@ -31,9 +30,12 @@ public class StudentManager
         this.studentMap          = new StudentMap();
         this.unitToStudentMapMap = new HashMap<String, StudentMap>();
     }
-
     
-    
+    /**
+     * Gets an IStudent for the given student ID
+     * @param id The ID of the IStudent to get
+     * @return A Student object for the given ID
+     */
     public IStudent getStudent(Integer id)
     {
         IStudent student = studentMap.get(id);
@@ -47,7 +49,6 @@ public class StudentManager
             return student;
         }
     }
-
     
     
     private Element getStudentElement(Integer id)
@@ -64,7 +65,6 @@ public class StudentManager
         }
         return null;
     }
-
     
     
     private IStudent createStudent(Integer id)
@@ -86,7 +86,6 @@ public class StudentManager
 
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
-
     
     
     private IStudent createStudentProxy(Integer id)
@@ -98,7 +97,6 @@ public class StudentManager
                     el.getAttributeValue("lname"));
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
-
     
     /**
      * Given a unit code, retrieves the associated StudentMap.
@@ -109,14 +107,14 @@ public class StudentManager
      */
     public StudentMap getStudentsByUnit(String unitCode)
     {
-        StudentMap studentMap = unitToStudentMapMap.get(unitCode);
+        StudentMap studentProxyMap = unitToStudentMapMap.get(unitCode);
 
-        if (studentMap != null)
+        if (studentProxyMap != null)
         {
-            return studentMap;
+            return studentProxyMap;
         }
 
-        studentMap = new StudentMap();
+        studentProxyMap = new StudentMap();
         IStudent student;
         StudentUnitRecordList recordList = StudentUnitRecordManager.instance()
                 .getRecordsByUnit(unitCode);
@@ -124,10 +122,10 @@ public class StudentManager
         for (IStudentUnitRecord record : recordList)
         {
             student = createStudentProxy(new Integer(record.getStudentID()));
-            studentMap.put(student.getID(), student);
+            studentProxyMap.put(student.getID(), student);
         }
 
-        unitToStudentMapMap.put(unitCode, studentMap);
-        return studentMap;
+        unitToStudentMapMap.put(unitCode, studentProxyMap);
+        return studentProxyMap;
     }
 }

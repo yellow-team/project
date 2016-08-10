@@ -2,6 +2,8 @@ package datamanagement;
 
 /**
  * Proxy class for Student objects managed by StudentManager singleton.
+ * Each StudentProxy has a reference to the StudentManager singleton,
+ * rather than a StudentUnitRecordList.
  *
  */
 public class StudentProxy implements IStudent

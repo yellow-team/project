@@ -27,7 +27,10 @@ public class XMLManager
     {
         init();
     }
-
+    
+    /**
+     * Ensures the XML file exists, then loads it.
+     */
     public void init()
     {
         String xmlFileName = AppProperties.getInstance().getProperties()
@@ -56,13 +59,15 @@ public class XMLManager
         }
     }
 
-    
     public Document getDocument()
     {
         return doc;
     }
-
     
+    
+    /**
+     * Overwrites the entire XML file with new version.
+     */
     public void saveDocument()
     {
         String xmlfile = AppProperties.getInstance().getProperties()
