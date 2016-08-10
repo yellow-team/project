@@ -96,8 +96,8 @@ public class ChangeGradeCTL
      */
     public String checkGrade(float asg1Mark, float asg2Mark, float examMark)
     {
-        IUnit unit = UnitManager.getInstance().getUnit(currentUnitCode);
-        String grade = unit.computeGrade(asg1Mark, asg2Mark, examMark);
+        IUnit unit = UnitManager.UM().getUnit(currentUnitCode);
+        String grade = unit.getGrade(asg1Mark, asg2Mark, examMark);
         ui.setChangeMarksButtonEnabled(true);
         ui.setMarksTextFieldsEnabled(false);
         if (changed)
@@ -128,7 +128,7 @@ public class ChangeGradeCTL
      */
     public void saveGrade(float asg1Mark, float asg2Mark, float examMark)
     {
-        IUnit unit = UnitManager.getInstance().getUnit(currentUnitCode);
+        IUnit unit = UnitManager.UM().getUnit(currentUnitCode);
         IStudent student = StudentManager.getInstance()
                                             .getStudent(currentStudentID);
 
