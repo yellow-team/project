@@ -4,11 +4,11 @@ package datamanagement;
  * Controller class that sources (proxy) Unit objects for the UI.
  *
  */
-public class ListUnitsController
+public class ListUnitsCTL
 {
     private UnitManager unitManager;
 
-    public ListUnitsController()
+    public ListUnitsCTL()
     {
         unitManager = UnitManager.getInstance();
     }

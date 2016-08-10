@@ -4,11 +4,11 @@ package datamanagement;
  * Controller class that sources (proxy) Student objects for the UI.
  *
  */
-public class ListStudentsController
+public class ListStudentsCTL
 {
     private StudentManager studentManager;
 
-    public ListStudentsController()
+    public ListStudentsCTL()
     {
         studentManager = StudentManager.getInstance();
     }

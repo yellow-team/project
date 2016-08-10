@@ -31,7 +31,7 @@ import java.awt.event.KeyEvent;
  */
 public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
 {
-    private ChangeGradeController controller;
+    private ChangeGradeCTL controller;
     private DefaultComboBoxModel  unitComboBoxModel;
     private DefaultComboBoxModel  studentComboBoxModel;
     float                         asg1Mark;
@@ -39,7 +39,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
     float                         examMark;
     Integer                       studentId;
 
-    public ChangeGradeUI(ChangeGradeController controller)
+    public ChangeGradeUI(ChangeGradeCTL controller)
     {
         this.controller           = controller;
         this.unitComboBoxModel    = new DefaultComboBoxModel(new String[0]);

@@ -5,14 +5,14 @@ package datamanagement;
  * e.g. enables/disables buttons, 
  *
  */
-public class ChangeGradeController
+public class ChangeGradeCTL
 {
     ChangeGradeUI ui;
     String        currentUnitCode  = null;
     Integer       currentStudentID = null;
     boolean       changed          = false;
 
-    public ChangeGradeController()
+    public ChangeGradeCTL()
     {
     }
 
@@ -31,7 +31,7 @@ public class ChangeGradeController
 
         ui.refresh();
 
-        ListUnitsController listUnitsController = new ListUnitsController();
+        ListUnitsCTL listUnitsController = new ListUnitsCTL();
         listUnitsController.listUnits(ui);
         ui.setVisible(true);
         ui.setUnitComboBoxEnabled(true);
@@ -48,7 +48,7 @@ public class ChangeGradeController
         }
         else
         {
-            ListStudentsController listStudentsController = new ListStudentsController();
+            ListStudentsCTL listStudentsController = new ListStudentsCTL();
             listStudentsController.listStudents(ui, unitCode);
             currentUnitCode = unitCode;
             ui.setStudentComboBoxEnabled(true);
