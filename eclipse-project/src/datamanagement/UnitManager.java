@@ -39,11 +39,13 @@ public class UnitManager
     {
         IUnit iUnit;
 
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("unitTable").getChildren("unit"))
+        for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+        		.getRootElement().getChild("unitTable").getChildren("unit"))
         {
             if (unitCode.equals(el.getAttributeValue("uid")))
             {
-                StudentUnitRecordList slist; //leaving this as slist because real name is too long
+                StudentUnitRecordList slist; //leaving this as slist because
+                //real name is too long
 
                 slist = null;
                 iUnit = new Unit(el.getAttributeValue("uid"),
@@ -74,9 +76,11 @@ public class UnitManager
         IUnit iUnit;
 
         unitMap = new UnitMap();
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("unitTable").getChildren("unit"))
+        for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+        		.getRootElement().getChild("unitTable").getChildren("unit"))
         {
-            iUnit = new UnitProxy(el.getAttributeValue("uid"), el.getAttributeValue("name"));
+            iUnit = new UnitProxy(el.getAttributeValue("uid"),
+            		el.getAttributeValue("name"));
             unitMap.put(iUnit.getUnitCode(), iUnit);
         } // unit maps are filled with PROXY units
         return unitMap;

@@ -13,8 +13,9 @@ public class Unit implements IUnit
 
     private StudentUnitRecordList studentUnitRecordList;
 
-    public Unit(String unitCode, String unitName, float psCutoff, float crCutoff,
-    		float diCutoff, float hdCutoff, float aeCutoff, int asg1Weight, int asg2Weight, int examWeight,
+    public Unit(String unitCode, String unitName, float psCutoff,
+    		float crCutoff, float diCutoff, float hdCutoff, float aeCutoff,
+    		int asg1Weight, int asg2Weight, int examWeight,
     		StudentUnitRecordList studentUnitRecordList)
     {
         this.unitCode = unitCode;
@@ -25,7 +26,8 @@ public class Unit implements IUnit
         this.hdCutoff = hdCutoff;
         this.aeCutoff = aeCutoff;
         setAssessmentWeights(asg1Weight, asg2Weight, examWeight);
-        this.studentUnitRecordList = studentUnitRecordList == null ? new StudentUnitRecordList() : studentUnitRecordList;
+        this.studentUnitRecordList = studentUnitRecordList == null ?
+        		new StudentUnitRecordList() : studentUnitRecordList;
     }
 
     public String getUnitCode()
@@ -129,13 +131,15 @@ public class Unit implements IUnit
     }
 
     @Override
-    public void setAssessmentWeights(int asg1Weight, int asg2Weight, int examWeight)
+    public void setAssessmentWeights(int asg1Weight, int asg2Weight,
+    		int examWeight)
     {
         if (asg1Weight < 0 || asg1Weight > 100 ||
             asg2Weight < 0 || asg2Weight > 100 ||
             examWeight < 0 || examWeight > 100 )
         {
-            throw new RuntimeException("Assessment weights cant be less than zero or greater than 100");
+            throw new RuntimeException
+            ("Assessment weights cant be less than zero or greater than 100");
         }
         if (asg1Weight + asg2Weight + examWeight != 100)
         {
@@ -146,7 +150,8 @@ public class Unit implements IUnit
         this.examWeight = examWeight;
     }
 
-    private void setCutoffs(float aeCutoff, float psCutoff, float crCutoff, float diCutoff, float hdCutoff)
+    private void setCutoffs(float aeCutoff, float psCutoff, float crCutoff,
+    		float diCutoff, float hdCutoff)
     {
         if (psCutoff < 0 || psCutoff > 100 ||
             crCutoff < 0 || crCutoff > 100 ||
@@ -154,23 +159,32 @@ public class Unit implements IUnit
             hdCutoff < 0 || hdCutoff > 100 ||
             aeCutoff < 0 || aeCutoff > 100 )
         {
-            throw new RuntimeException("Assessment cutoffs cant be less than zero or greater than 100");
+            throw new RuntimeException
+            ("Assessment cutoffs cant be less than zero or greater than 100");
         }
         if (aeCutoff >= psCutoff)
         {
-            throw new RuntimeException(Constants.AE + " cutoff must be less than " + Constants.PASS + " cutoff");
+            throw new RuntimeException(Constants.AE
+            		+ " cutoff must be less than "
+            		+ Constants.PASS + " cutoff");
         }
         if (psCutoff >= crCutoff)
         {
-            throw new RuntimeException(Constants.PASS + " cutoff must be less than " + Constants.CREDIT +" cutoff");
+            throw new RuntimeException(Constants.PASS
+            		+ " cutoff must be less than "
+            		+ Constants.CREDIT +" cutoff");
         }
         if (crCutoff >= diCutoff)
         {
-            throw new RuntimeException(Constants.CREDIT + " cutoff must be less than " + Constants.DISTINCTION + " cutoff");
+            throw new RuntimeException(Constants.CREDIT
+            		+ " cutoff must be less than " + Constants.DISTINCTION
+            		+ " cutoff");
         }
         if (diCutoff >= hdCutoff)
         {
-            throw new RuntimeException(Constants.DISTINCTION + " cutoff must be less than " + Constants.HIGH_DISTINCTION + " cutoff");
+            throw new RuntimeException(Constants.DISTINCTION
+            		+ " cutoff must be less than "
+            		+ Constants.HIGH_DISTINCTION + " cutoff");
         }
     }
 
@@ -182,7 +196,8 @@ public class Unit implements IUnit
                 asg2Mark < 0 || asg2Mark > asg2Weight ||
                 examMark < 0 || examMark > examWeight )
         {
-            throw new RuntimeException("marks cannot be less than zero or greater than assessment weights");
+            throw new RuntimeException("marks cannot be less than zero "
+            		+ "or greater than assessment weights");
         }
 
         if (total < aeCutoff)

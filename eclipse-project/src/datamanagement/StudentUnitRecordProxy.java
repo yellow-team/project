@@ -19,32 +19,39 @@ public class StudentUnitRecordProxy implements IStudentUnitRecord
     {
         return unitCode;
     }
-    public void setasg1Mark(float asg1Mark)
+    public void setAsg1Mark(float asg1Mark)
     {
-        studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode).setasg1Mark(asg1Mark);
+        studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
+        .setAsg1Mark(asg1Mark);
     }
-    public float getasg1Mark()
+    public float getAsg1Mark()
     {
-        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode).getasg1Mark();
+        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
+        		.getAsg1Mark();
     }
-    public void setasg2Mark(float asg2Mark)
+    public void setAsg2Mark(float asg2Mark)
     {
-        studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode).setasg2Mark(asg2Mark);
+        studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
+        .setAsg2Mark(asg2Mark);
     }
-    public float getasg2Mark()
+    public float getAsg2Mark()
     {
-        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode).getasg2Mark();
+        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
+        		.getAsg2Mark();
     }
-    public void setexamMark(float examMark)
+    public void setExamMark(float examMark)
     {
-        studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode).setexamMark(examMark);
+        studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
+        .setExamMark(examMark);
     }
-    public float getexamMark()
+    public float getExamMark()
     {
-        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode).getexamMark();
+        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
+        		.getExamMark();
     }
     public float getTotal()
     {
-        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode).getTotal();
+        return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
+        		.getTotal();
     }
 }

@@ -433,9 +433,9 @@ public class ChangeGradeUI extends javax.swing.JFrame implements IUnitLister, IS
 
     public void setRecord(IStudentUnitRecord record)
     {
-        jTextField1.setText(new Float(record.getasg1Mark()).toString());
-        jTextField2.setText(new Float(record.getasg2Mark()).toString());
-        jTextField3.setText(new Float(record.getexamMark()).toString());
+        jTextField1.setText(new Float(record.getAsg1Mark()).toString());
+        jTextField2.setText(new Float(record.getAsg2Mark()).toString());
+        jTextField3.setText(new Float(record.getExamMark()).toString());
         jLabel5.setText("");
     }
 

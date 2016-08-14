@@ -98,9 +98,9 @@ public class ChangeGradeController
         IStudent s = StudentManager.get().getStudent(currentStudentID);
 
         IStudentUnitRecord r = s.getUnitRecord(cuc);
-        r.setasg1Mark(asg1Mark);
-        r.setasg2Mark(asg2Mark);
-        r.setexamMark(examMark);
+        r.setAsg1Mark(asg1Mark);
+        r.setAsg2Mark(asg2Mark);
+        r.setExamMark(examMark);
         StudentUnitRecordManager.getInstance().saveRecord(r);
         CGUI.setState4(true);
         CGUI.setState5(false);
