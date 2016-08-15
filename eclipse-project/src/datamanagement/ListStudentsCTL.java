@@ -1,8 +1,33 @@
 package datamanagement;
-        public class ListStudentsCTL {
-private StudentManager sm;
-public ListStudentsCTL() {sm = StudentManager.get();}
-            public void listStudents( IStudentLister lister, String unitCode ) {
-    lister.clearStudents();
-                StudentMap students = sm.getStudentsByUnit( unitCode );
-for (Integer id : students.keySet() ) lister.addStudent(students.get(id));}}
+
+/**
+ * Controller class that sources (proxy) Student objects for the UI.
+ *
+ */
+public class ListStudentsCTL
+{
+    private StudentManager studentManager;
+
+    public ListStudentsCTL()
+    {
+        studentManager = StudentManager.getInstance();
+    }
+
+    
+    
+    /**
+     * Retrieves a map of proxied Students from the StudentManager singleton
+     * and provides them to the UI through the IStudentLister interface.
+     * @param unitLister
+     */
+    public void listStudents(IStudentLister lister, String unitCode)
+    {
+        lister.clearStudents();
+        StudentMap students = studentManager.getStudentsByUnit(unitCode);
+        
+        for (Integer id : students.keySet())
+        {
+            lister.addStudent(students.get(id));
+        }
+    }
+}

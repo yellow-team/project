@@ -1,8 +1,10 @@
 package datamanagement;
 
-public interface IStudentUnitRecord {
+public interface IStudentUnitRecord
+{
 
     public Integer getStudentID();
+
     public String getUnitCode();
 
     public void setAsg1(float mark);

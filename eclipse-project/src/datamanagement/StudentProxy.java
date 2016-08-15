@@ -1,63 +1,63 @@
 package datamanagement;
-public class StudentProxy implements IStudent {
-private Integer I;
-private String l;
 
+/**
+ * Proxy class for Student objects managed by StudentManager singleton.
+ * Each StudentProxy has a reference to the StudentManager singleton,
+ * rather than a StudentUnitRecordList.
+ *
+ */
+public class StudentProxy implements IStudent
+{
+    private Integer        studentId;
+    private String         firstName;
+    private String         lastName;
+    private StudentManager studentManager;
 
+    public StudentProxy(Integer id, String firstName, String lastName)
+    {
+        this.studentId = id;
+        this.firstName = firstName;
+        this.lastName  = lastName;
+        studentManager = StudentManager.getInstance();
+    }
 
-    private String Il;
-    private StudentManager lI;
-    public StudentProxy( Integer id, String fn, String Il) {
-        this.I = id;
-        this.l = fn;
+    public Integer getID()
+    {
+        return studentId;
+    }
 
-        
-        this.Il = Il;
-this.lI = StudentManager.get();}
+    public String getFirstName()
+    {
+        return firstName;
+    }
 
-    public Integer getID() { return I; 
+    public String getLastName()
+    {
+        return lastName;
+    }
 
-    
-    
+    public void setFirstName(String firstName)
+    {
+        studentManager.getStudent(studentId).setFirstName(firstName);
+    }
+
+    public void setLastName(String lastName)
+    {
+        studentManager.getStudent(studentId).setLastName(lastName);
+    }
+
+    public void addUnitRecord(IStudentUnitRecord record)
+    {
+        studentManager.getStudent(studentId).addUnitRecord(record);
+    }
+
+    public IStudentUnitRecord getUnitRecord(String unitCode)
+    {
+        return studentManager.getStudent(studentId).getUnitRecord(unitCode);
+    }
+
+    public StudentUnitRecordList getRecordList()
+    {
+        return studentManager.getStudent(studentId).getRecordList();
+    }
 }
-public String getFirstName() { 
-        return l; }
-
-    public String getLastName() { 
-return Il; 
-}
-public void setFirstName(String firstName) {
-
-    
-    
-    
-    lI.getStudent(I).setFirstName(firstName);}
-    public void setLastName(String lastName) {
-        
-        
-        
-        lI.getStudent(I).setLastName(lastName);}
-
-    
-    
-        public void addUnitRecord(IStudentUnitRecord record) {
-        lI.getStudent(I).addUnitRecord(record);}
-        public IStudentUnitRecord getUnitRecord(String unitCode) {
-
-            
- 
-            
-            
-            
-            
-            
-                    return lI.getStudent(I).getUnitRecord(unitCode);}
-
-
-        
-  
-        
-        
-        
-        
-                                public StudentUnitRecordList getUnitRecords() { return lI.getStudent(I).getUnitRecords();}}
