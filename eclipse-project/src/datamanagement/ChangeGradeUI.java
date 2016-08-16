@@ -58,7 +58,6 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
     // desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
-
         titleLabel            = new JLabel();
         unitSelectionPanel    = new JPanel();
         unitComboBox          = new JComboBox();
@@ -78,7 +77,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        titleLabel.setText("Check Grade UI");
+        titleLabel.setText(Constants.APPLICATION_TITLE);
 
         unitSelectionPanel.setBorder(BorderFactory.createTitledBorder("Unit"));
 
@@ -382,7 +381,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
         {
             if (unit.equals((String) unitComboBox.getItemAt(0)))
             {
-                unit = "NONE";
+                unit = Constants.NONE_SELECTED;
             }
             controller.selectUnit(unit);
         }
@@ -514,7 +513,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
     public void clearUnits()
     {
         unitComboBoxModel.removeAllElements();
-        unitComboBoxModel.addElement("<none selected>");
+        unitComboBoxModel.addElement(Constants.NONE_SELECTED);
         clearStudents();
     }
 
@@ -535,7 +534,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
     public void clearStudents()
     {
         studentComboBoxModel.removeAllElements();
-        studentComboBoxModel.addElement("<none selected>");
+        studentComboBoxModel.addElement(Constants.NONE_SELECTED);
     }
 
     
