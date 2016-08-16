@@ -416,7 +416,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
         }
         catch (NumberFormatException e)
         {
-            errorMessageLabel.setText("Invalid input for assignment 1 mark.");
+            errorMessageLabel.setText("Invalid number for assignment 1 mark.");
             return false;
         }
         
@@ -427,7 +427,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
         }
         catch (NumberFormatException e)
         {
-            errorMessageLabel.setText("Invalid input for assignment 2 mark.");
+            errorMessageLabel.setText("Invalid number for assignment 2 mark.");
             return false;
         }
         
@@ -438,7 +438,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
         }
         catch (NumberFormatException e)
         {
-            errorMessageLabel.setText("Invalid input for exam mark.");
+            errorMessageLabel.setText("Invalid number for exam mark.");
             return false;
         }
         
