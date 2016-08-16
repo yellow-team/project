@@ -49,10 +49,8 @@ public class StudentManager
         {
             return createStudent(id);
         }
-        else
-        {
-            return student;
-        }
+        
+        return student;
     }
     
     
