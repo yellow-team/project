@@ -169,7 +169,12 @@ public class StudentUnitRecordManager
      */
     public void saveRecord(IStudentUnitRecord irec)
     {
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+        saveRecord(irec, irec.getAsg1Mark(), irec.getAsg2Mark(), irec.getExamMark());
+    }
+    public void saveRecord(IStudentUnitRecord irec, float asg1Mark,
+    		float asg2Mark, float examMark)
+    {
+    	for (Element el : (List<Element>) XMLManager.getXML().getDocument()
         		.getRootElement().getChild("studentUnitRecordTable")
         		.getChildren("record"))
         {
@@ -178,11 +183,11 @@ public class StudentUnitRecordManager
             		&& irec.getUnitCode().equals
             		(el.getAttributeValue(Constants.UNIT_ID)))
             {
-                el.setAttribute(Constants.ASG_1, new Float(irec.getAsg1Mark())
+                el.setAttribute(Constants.ASG_1, new Float(asg1Mark)
                 		.toString());
-                el.setAttribute(Constants.ASG_2, new Float(irec.getAsg2Mark())
+                el.setAttribute(Constants.ASG_2, new Float(asg2Mark)
                 		.toString());
-                el.setAttribute(Constants.EXAM, new Float(irec.getExamMark())
+                el.setAttribute(Constants.EXAM, new Float(examMark)
                 		.toString());
                 XMLManager.getXML().saveDocument();
                 return;
