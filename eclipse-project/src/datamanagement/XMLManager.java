@@ -39,7 +39,7 @@ public class XMLManager
     public void init()
     {
         String xmlFileName = AppProperties.getInstance().getProperties()
-                .getProperty("XMLFILE");
+                .getProperty(Constants.XML_FILE_PATH);
 
         try
         {
@@ -76,7 +76,7 @@ public class XMLManager
     public void saveDocument()
     {
         String xmlfile = AppProperties.getInstance().getProperties()
-                .getProperty("XMLFILE");
+                .getProperty(Constants.XML_FILE_PATH);
 
         try (FileWriter fout = new FileWriter(xmlfile))
         {
