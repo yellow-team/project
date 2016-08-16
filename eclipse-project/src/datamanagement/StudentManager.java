@@ -38,30 +38,30 @@ public class StudentManager
     
     /**
      * Gets an IStudent for the given student ID
-     * @param id The ID of the IStudent to get
+     * @param studentId The ID of the IStudent to get
      * @return A Student object for the given ID
      */
-    public IStudent getStudent(Integer id)
+    public IStudent getStudent(Integer studentId)
     {
-        IStudent student = studentMap.get(id);
+        IStudent student = studentMap.get(studentId);
 
         if (student == null)
         {
-            return createStudent(id);
+            return createStudent(studentId);
         }
         
         return student;
     }
     
     
-    private Element getStudentElement(Integer id)
+    private Element getStudentElement(Integer studentId)
     {
         for (Element el : (List<Element>) XMLManager.getInstance().getDocument()
                 .getRootElement().getChild("studentTable")
                 .getChildren("student"))
         {
 
-            if (id.toString().equals(el.getAttributeValue("sid")))
+            if (studentId.toString().equals(el.getAttributeValue("sid")))
             {
                 return el;
             }
@@ -70,18 +70,19 @@ public class StudentManager
     }
     
     
-    private IStudent createStudent(Integer id)
+    private IStudent createStudent(Integer studentId)
     {
         IStudent student;
-        Element el = getStudentElement(id);
+        Element el = getStudentElement(studentId);
 
         if (el != null)
         {
-            StudentUnitRecordList recordList = StudentUnitRecordManager
-                    .instance().getRecordsByStudent(id);
+            StudentUnitRecordList studentUnitRecordList = 
+                                            StudentUnitRecordManager.instance()
+                                            .getRecordsByStudent(studentId);
             student = new Student(new Integer(el.getAttributeValue("sid")),
                     el.getAttributeValue("fname"),
-                    el.getAttributeValue("lname"), recordList);
+                    el.getAttributeValue("lname"), studentUnitRecordList);
 
             studentMap.put(student.getStudentId(), student);
             return student;
@@ -91,13 +92,15 @@ public class StudentManager
     }
     
     
-    private IStudent createStudentProxy(Integer id)
+    private IStudent createStudentProxy(Integer studentId)
     {
-        Element el = getStudentElement(id);
+        Element el = getStudentElement(studentId);
 
-        if (el != null)
-            return new StudentProxy(id, el.getAttributeValue("fname"),
-                    el.getAttributeValue("lname"));
+        if (el != null) {
+            return new StudentProxy(studentId,
+                                    el.getAttributeValue("fname"),
+                                    el.getAttributeValue("lname"));
+        }
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
     

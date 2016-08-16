@@ -6,7 +6,6 @@ package datamanagement;
  */
 public interface IStudent
 {
-
     public Integer getStudentId();
 
     public String getFirstName();
