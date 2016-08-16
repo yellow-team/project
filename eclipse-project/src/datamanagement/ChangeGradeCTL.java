@@ -41,7 +41,7 @@ public class ChangeGradeCTL
     
     public void selectUnit(String unitCode)
     {
-        if (unitCode.equals("NONE"))
+        if (unitCode.equals(Constants.NONE_SELECTED))
         {
             ui.setStudentComboBoxEnabled(false);
         }
