@@ -541,7 +541,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
     
     public void addStudent(IStudent student)
     {
-        studentComboBoxModel.addElement(student.getID().toString() + " : "
+        studentComboBoxModel.addElement(student.getId().toString() + " : "
                 + student.getFirstName() + " " + student.getLastName());
     }
 

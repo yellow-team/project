@@ -21,7 +21,7 @@ public class StudentProxy implements IStudent
         studentManager = StudentManager.getInstance();
     }
 
-    public Integer getID()
+    public Integer getId()
     {
         return studentId;
     }
@@ -56,8 +56,8 @@ public class StudentProxy implements IStudent
         return studentManager.getStudent(studentId).getUnitRecord(unitCode);
     }
 
-    public StudentUnitRecordList getRecordList()
+    public StudentUnitRecordList getStudentUnitRecordList()
     {
-        return studentManager.getStudent(studentId).getRecordList();
+        return studentManager.getStudent(studentId).getStudentUnitRecordList();
     }
 }
