@@ -406,21 +406,68 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             controller.selectStudent(studentId);
         }
     }// GEN-LAST:event_jComboBox2ItemStateChanged
-
-    private void checkGradeButtonActionPerformed(java.awt.event.ActionEvent evt)
-    {// GEN-FIRST:event_jButton3ActionPerformed
-        asg1Mark = new Float(asg1MarkTextField.getText()).floatValue();
-        asg2Mark = new Float(asg2MarkTextField.getText()).floatValue();
-        examMark = new Float(examMarkTextField.getText()).floatValue();
-        // lblErrMsg.setText("");
+    
+    
+    private boolean computeInputValidity()
+    {
         try
         {
-            String s = controller.checkGrade(asg1Mark, asg2Mark, examMark);
-            gradeLabel.setText(s);
+            Float.parseFloat(asg1MarkTextField.getText());
         }
-        catch (RuntimeException re)
+        catch (NumberFormatException e)
         {
-            errorMessageLabel.setText(re.getMessage());
+            errorMessageLabel.setText("Invalid input for assignment 1 mark.");
+            return false;
+        }
+        
+        
+        try
+        {
+            Float.parseFloat(asg2MarkTextField.getText());
+        }
+        catch (NumberFormatException e)
+        {
+            errorMessageLabel.setText("Invalid input for assignment 2 mark.");
+            return false;
+        }
+        
+        
+        try
+        {
+            Float.parseFloat(examMarkTextField.getText());
+        }
+        catch (NumberFormatException e)
+        {
+            errorMessageLabel.setText("Invalid input for exam mark.");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    
+    
+    private void checkGradeButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {// GEN-FIRST:event_jButton3ActionPerformed
+        boolean inputValid = computeInputValidity();
+        
+        if (inputValid)
+        {
+            asg1Mark = new Float(asg1MarkTextField.getText()).floatValue();
+            asg2Mark = new Float(asg2MarkTextField.getText()).floatValue();
+            examMark = new Float(examMarkTextField.getText()).floatValue();
+            // lblErrMsg.setText("");
+            try
+            {
+                String s = controller.checkGrade(asg1Mark, 
+                                                         asg2Mark,
+                                                         examMark);
+                gradeLabel.setText(s);
+            }
+            catch (RuntimeException re)
+            {
+                errorMessageLabel.setText(re.getMessage());
+            }
         }
     }// GEN-LAST:event_jButton3ActionPerformed
 
@@ -439,23 +486,28 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
 
     private void checkMarksButtonActionPerformed(java.awt.event.ActionEvent evt)
     {// GEN-FIRST:event_jButton2ActionPerformed
-        float changedAsg1Mark = new Float(asg1MarkTextField.getText())
-                .floatValue();
-        float changedAsg2Mark = new Float(asg2MarkTextField.getText())
-                .floatValue();
-        float changedExamMark = new Float(examMarkTextField.getText())
-                .floatValue();
-        errorMessageLabel.setText("");
+        boolean inputValid = computeInputValidity();
         
-        try
+        if (inputValid)
         {
-            controller.saveGrade(changedAsg1Mark, 
-                                 changedAsg2Mark, 
-                                 changedExamMark);
-        }
-        catch (RuntimeException re)
-        {
-            errorMessageLabel.setText(re.getMessage());
+            float changedAsg1Mark = new Float(asg1MarkTextField.getText())
+                    .floatValue();
+            float changedAsg2Mark = new Float(asg2MarkTextField.getText())
+                    .floatValue();
+            float changedExamMark = new Float(examMarkTextField.getText())
+                    .floatValue();
+            errorMessageLabel.setText("");
+            
+            try
+            {
+                controller.saveGrade(changedAsg1Mark, 
+                                     changedAsg2Mark, 
+                                     changedExamMark);
+            }
+            catch (RuntimeException re)
+            {
+                errorMessageLabel.setText(re.getMessage());
+            }
         }
     }// GEN-LAST:event_jButton2ActionPerformed
 
