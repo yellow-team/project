@@ -41,7 +41,7 @@ public class Student implements IStudent
     }
     
     
-    public Integer getId()
+    public Integer getStudentId()
     {
         return this.id;
     }

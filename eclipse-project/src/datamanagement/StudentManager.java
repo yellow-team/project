@@ -83,7 +83,7 @@ public class StudentManager
                     el.getAttributeValue("fname"),
                     el.getAttributeValue("lname"), recordList);
 
-            studentMap.put(student.getId(), student);
+            studentMap.put(student.getStudentId(), student);
             return student;
         }
 
@@ -125,7 +125,7 @@ public class StudentManager
         for (IStudentUnitRecord record : recordList)
         {
             student = createStudentProxy(new Integer(record.getStudentID()));
-            studentProxyMap.put(student.getId(), student);
+            studentProxyMap.put(student.getStudentId(), student);
         }
 
         unitToStudentMapMap.put(unitCode, studentProxyMap);

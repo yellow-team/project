@@ -13,15 +13,15 @@ public class StudentProxy implements IStudent
     private String         lastName;
     private StudentManager studentManager;
 
-    public StudentProxy(Integer id, String firstName, String lastName)
+    public StudentProxy(Integer studentId, String firstName, String lastName)
     {
-        this.studentId = id;
+        this.studentId = studentId;
         this.firstName = firstName;
         this.lastName  = lastName;
         studentManager = StudentManager.getInstance();
     }
 
-    public Integer getId()
+    public Integer getStudentId()
     {
         return studentId;
     }
@@ -46,9 +46,9 @@ public class StudentProxy implements IStudent
         studentManager.getStudent(studentId).setLastName(lastName);
     }
 
-    public void addUnitRecord(IStudentUnitRecord record)
+    public void addUnitRecord(IStudentUnitRecord studentUnitRecord)
     {
-        studentManager.getStudent(studentId).addUnitRecord(record);
+        studentManager.getStudent(studentId).addUnitRecord(studentUnitRecord);
     }
 
     public IStudentUnitRecord getUnitRecord(String unitCode)
