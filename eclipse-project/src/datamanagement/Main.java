@@ -10,6 +10,6 @@ public class Main
 {
     public static void main(String[] p)
     {
-        new ChangeGradeCTL().execute();
+        new ChangeGradeCTL().startUserInterface();
     }
 }

@@ -459,7 +459,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             // lblErrMsg.setText("");
             try
             {
-                String s = controller.checkGrade(asg1Mark, 
+                String s = controller.computeGradeString(asg1Mark, 
                                                          asg2Mark,
                                                          examMark);
                 gradeLabel.setText(s);
