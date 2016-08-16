@@ -13,7 +13,16 @@ public class Student implements IStudent
     private String                firstName;
     private String                lastName;
     private StudentUnitRecordList recordList;
-
+    
+    /**
+     * Creates a new Student object
+     * @param id The ID number of the student, used as a key elsewhere.
+     * @param firstName Student's first name.
+     * @param lastName Student's last name.
+     * @param recordList A StudentUnitRecordList of the subjects the student
+     * has marks for. If null is passed in place of a StudentUnitRecordList,
+     * an empty StudentUnitRecordList will be created.
+     */
     public Student(Integer id, String firstName, String lastName,
             StudentUnitRecordList recordList)
     {
