@@ -9,22 +9,26 @@ import java.io.*;
  */
 public class AppProperties
 {
-    private final static AppProperties self = new AppProperties();;
-    private Properties                 properties;
+    private static AppProperties self = null;
+    private Properties properties;
 
     public static AppProperties getInstance()
     {
+        if (self == null)
+        {
+            self = new AppProperties();
+        }
+        
         return self;
     }
 
     private AppProperties()
     {
-
         properties = new Properties();
 
         try
         {
-            properties.load(new FileInputStream("Properties.prop"));
+            properties.load(new FileInputStream(Constants.PROPERTY_FILE_PATH));
         }
         catch (IOException e)
         {

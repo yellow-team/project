@@ -20,14 +20,14 @@ public class ListStudentsCTL
      * and provides them to the UI through the IStudentLister interface.
      * @param unitLister
      */
-    public void listStudents(IStudentLister lister, String unitCode)
+    public void listStudents(IStudentLister studentLister, String unitCode)
     {
-        lister.clearStudents();
+        studentLister.clearStudents();
         StudentMap students = studentManager.getStudentsByUnit(unitCode);
         
         for (Integer id : students.keySet())
         {
-            lister.addStudent(students.get(id));
+            studentLister.addStudent(students.get(id));
         }
     }
 }
