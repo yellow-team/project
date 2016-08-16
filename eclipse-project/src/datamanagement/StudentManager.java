@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class StudentManager
 {
-    private final static StudentManager self = new StudentManager();
+    private static StudentManager self = null;
 
     private StudentMap                  studentMap;
     private HashMap<String, StudentMap> unitToStudentMapMap;
@@ -21,6 +21,11 @@ public class StudentManager
     
     public static StudentManager getInstance()
     {
+        if (self == null)
+        {
+            self = new StudentManager();
+        }
+        
         return self;
     }
     

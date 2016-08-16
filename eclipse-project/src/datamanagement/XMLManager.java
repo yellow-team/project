@@ -14,12 +14,17 @@ import org.jdom.JDOMException;
  */
 public class XMLManager
 {
-    private final static XMLManager self = new XMLManager();
+    private static XMLManager self = null;
 
     private Document                doc;
 
     public static XMLManager getInstance()
     {
+        if (self == null)
+        {
+            self = new XMLManager();
+        }
+        
         return self;
     }
 
