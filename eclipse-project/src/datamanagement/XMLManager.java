@@ -16,8 +16,9 @@ public class XMLManager
 {
     private static XMLManager self = null;
 
-    private Document                doc;
+    private Document doc;
 
+    
     public static XMLManager getInstance()
     {
         if (self == null)
@@ -28,24 +29,26 @@ public class XMLManager
         return self;
     }
 
+    
     private XMLManager()
     {
         init();
     }
+    
     
     /**
      * Ensures the XML file exists, then loads it.
      */
     public void init()
     {
-        String xmlFileName = AppProperties.getInstance().getProperties()
-                .getProperty(Constants.XML_FILE_PATH);
+        String xmlFilePath = AppProperties.getInstance().getProperties()
+                .getProperty(Constants.XML_FILE_PATH_KEY);
 
         try
         {
             SAXBuilder builder = new SAXBuilder();
             builder.setExpandEntities(true);
-            doc = builder.build(xmlFileName);
+            doc = builder.build(xmlFilePath);
         }
 
         catch (JDOMException e)
@@ -64,6 +67,7 @@ public class XMLManager
         }
     }
 
+    
     public Document getDocument()
     {
         return doc;
@@ -75,10 +79,10 @@ public class XMLManager
      */
     public void saveDocument()
     {
-        String xmlfile = AppProperties.getInstance().getProperties()
-                .getProperty(Constants.XML_FILE_PATH);
+        String xmlFilePath = AppProperties.getInstance().getProperties()
+                .getProperty(Constants.XML_FILE_PATH_KEY);
 
-        try (FileWriter fout = new FileWriter(xmlfile))
+        try (FileWriter fout = new FileWriter(xmlFilePath))
         {
             XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
             outputter.output(doc, fout);
@@ -88,7 +92,7 @@ public class XMLManager
         {
             System.err.printf("%s\n",
                     "DBMD : XMLManager : saveDocument : Error saving XML to "
-                            + xmlfile);
+                            + xmlFilePath);
             throw new RuntimeException(
                     "DBMD: XMLManager : saveDocument : error writing to file");
         }
