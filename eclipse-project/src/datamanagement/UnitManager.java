@@ -6,15 +6,8 @@ import org.jdom.*;
 public class UnitManager
 {
     private static UnitManager self = null;
-    private UnitMap unitMap; //changed UM->unitMap
+    private UnitMap unitMap;
 
-
-    //changed UM()->getInstance()
-    //other places used that need to be committed at same time:
-    //- cgCTL.java
-    //- ListUnitsCTL.java
-    //- StudentUnitRecord.java
-    //- UnitProxy.java
     public static UnitManager getInstance()
     {
         if (self == null)

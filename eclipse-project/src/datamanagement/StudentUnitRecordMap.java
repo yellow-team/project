@@ -12,7 +12,7 @@ java.util.HashMap<String, IStudentUnitRecord>
      */
     public IStudentUnitRecord get(Integer studentID, String unitCode)
     {
-        return super.get(studentID.toString()+unitCode);
+        return super.get(studentID.toString() + unitCode);
     }
 
     /**
@@ -23,7 +23,7 @@ java.util.HashMap<String, IStudentUnitRecord>
     public void put(Integer studentID, String unitCode,
     		IStudentUnitRecord iStudentUnitRecord)
     {
-        super.put(studentID.toString()+unitCode, iStudentUnitRecord);
+        super.put(studentID.toString() + unitCode, iStudentUnitRecord);
     }
     //TODO: find out how to disable super's methods from being
     //accessed to force use of these.
