@@ -16,7 +16,7 @@ public class XMLManager
 {
     private static XMLManager self = null;
 
-    private Document doc;
+    private Document document;
 
     
     public static XMLManager getInstance()
@@ -48,7 +48,7 @@ public class XMLManager
         {
             SAXBuilder builder = new SAXBuilder();
             builder.setExpandEntities(true);
-            doc = builder.build(xmlFilePath);
+            document = builder.build(xmlFilePath);
         }
 
         catch (JDOMException e)
@@ -70,7 +70,7 @@ public class XMLManager
     
     public Document getDocument()
     {
-        return doc;
+        return document;
     }
     
     
@@ -85,7 +85,7 @@ public class XMLManager
         try (FileWriter fout = new FileWriter(xmlFilePath))
         {
             XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-            outputter.output(doc, fout);
+            outputter.output(document, fout);
             fout.close();
         }
         catch (IOException ioe)
