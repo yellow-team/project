@@ -14,5 +14,5 @@ public interface IStudentUnitRecord
     public void setExamMark(float examMark);
     public float getExamMark();
 
-    public float getTotal();
+    public float calculateSumOfMarks();
 }

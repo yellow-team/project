@@ -76,7 +76,7 @@ public class StudentUnitRecord implements IStudentUnitRecord
         return examMark;
     }
 
-    public float getTotal()
+    public float calculateSumOfMarks()
     {
         return asg1Mark + asg2Mark + examMark;
     }

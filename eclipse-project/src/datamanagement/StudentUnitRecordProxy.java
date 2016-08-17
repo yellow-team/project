@@ -49,9 +49,9 @@ public class StudentUnitRecordProxy implements IStudentUnitRecord
         return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
         		.getExamMark();
     }
-    public float getTotal()
+    public float calculateSumOfMarks()
     {
         return studentUnitRecordManger.getStudentUnitRecord(studentID, unitCode)
-        		.getTotal();
+        		.calculateSumOfMarks();
     }
 }
