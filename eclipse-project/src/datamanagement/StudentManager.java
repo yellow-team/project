@@ -61,7 +61,7 @@ public class StudentManager
                 .getChildren("student"))
         {
 
-            if (studentId.toString().equals(el.getAttributeValue("sid")))
+            if (studentId.toString().equals(el.getAttributeValue(Constants.STUDENT_ID_ATTR)))
             {
                 return el;
             }
@@ -80,9 +80,9 @@ public class StudentManager
             StudentUnitRecordList studentUnitRecordList = 
                                             StudentUnitRecordManager.instance()
                                             .getRecordsByStudent(studentId);
-            student = new Student(new Integer(el.getAttributeValue("sid")),
-                    el.getAttributeValue("fname"),
-                    el.getAttributeValue("lname"), studentUnitRecordList);
+            student = new Student(new Integer(el.getAttributeValue(Constants.STUDENT_ID_ATTR)),
+                    el.getAttributeValue(Constants.STUDENT_FIRST_NAME_ATTR),
+                    el.getAttributeValue(Constants.STUDENT_LAST_NAME_ATTR), studentUnitRecordList);
 
             studentMap.put(student.getStudentId(), student);
             return student;
@@ -96,10 +96,11 @@ public class StudentManager
     {
         Element el = getStudentElement(studentId);
 
-        if (el != null) {
+        if (el != null)
+        {
             return new StudentProxy(studentId,
-                                    el.getAttributeValue("fname"),
-                                    el.getAttributeValue("lname"));
+                                    el.getAttributeValue(Constants.STUDENT_FIRST_NAME_ATTR),
+                                    el.getAttributeValue(Constants.STUDENT_LAST_NAME_ATTR));
         }
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
