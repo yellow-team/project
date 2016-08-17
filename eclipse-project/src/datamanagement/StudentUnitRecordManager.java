@@ -76,7 +76,7 @@ public class StudentUnitRecordManager
 
                 iStudentUnitRecord = new StudentUnitRecord(sid_el, uid_el,
                 		asg1_el, asg2_el, exam_el);
-                studentUnitRecordMap.put(iStudentUnitRecord.getStudentID(),
+                studentUnitRecordMap.put(iStudentUnitRecord.getStudentId(),
                 		iStudentUnitRecord.getUnitCode(), iStudentUnitRecord);
                 return iStudentUnitRecord;
             }
@@ -178,7 +178,7 @@ public class StudentUnitRecordManager
         		.getRootElement().getChild("studentUnitRecordTable")
         		.getChildren("record"))
         {
-            if (irec.getStudentID().toString().equals
+            if (irec.getStudentId().toString().equals
             		(el.getAttributeValue(Constants.STUDENT_ID))
             		&& irec.getUnitCode().equals
             		(el.getAttributeValue(Constants.UNIT_ID)))

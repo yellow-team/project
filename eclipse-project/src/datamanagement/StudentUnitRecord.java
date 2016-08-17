@@ -18,7 +18,7 @@ public class StudentUnitRecord implements IStudentUnitRecord
         this.setExamMark(examMark);
     }
 
-    public Integer getStudentID()
+    public Integer getStudentId()
     {
         return studentId;
     }

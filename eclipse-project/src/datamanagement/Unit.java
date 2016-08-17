@@ -95,11 +95,11 @@ public class Unit implements IUnit
         studentUnitRecordList.add(record);
     }
 
-    public IStudentUnitRecord getStudentRecord(int studentID)
+    public IStudentUnitRecord getStudentRecord(int studentId)
     {
         for (IStudentUnitRecord r : studentUnitRecordList)
         {
-            if (r.getStudentID() == studentID)
+            if (r.getStudentId() == studentId)
             {
                 return r;
             }

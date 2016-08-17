@@ -11,7 +11,7 @@ public class StudentUnitRecordProxy implements IStudentUnitRecord
         this.unitCode = unitCode;
         this.studentUnitRecordManger = StudentUnitRecordManager.getInstance();
     }
-    public Integer getStudentID()
+    public Integer getStudentId()
     {
         return studentID;
     }

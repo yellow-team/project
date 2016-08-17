@@ -4,7 +4,7 @@ public class ChangeGradeController
 {
     ChangeGradeUI CGUI;
     String cuc = null;
-    Integer currentStudentID = null;
+    Integer currentStudentId = null;
     boolean changed = false;
 
     public ChangeGradeController()
@@ -45,8 +45,8 @@ public class ChangeGradeController
 
     public void studentSelected(Integer id)
     {
-        currentStudentID = id;
-        if (currentStudentID.intValue() == 0)
+        currentStudentId = id;
+        if (currentStudentId.intValue() == 0)
         {
             CGUI.Refresh3();
             CGUI.setState3(false);
@@ -95,7 +95,7 @@ public class ChangeGradeController
     public void saveGrade(float asg1Mark, float asg2Mark, float examMark)
     {
         IUnit u = UnitManager.getInstance().getUnit(cuc);
-        IStudent s = StudentManager.get().getStudent(currentStudentID);
+        IStudent s = StudentManager.get().getStudent(currentStudentId);
 
         IStudentUnitRecord r = s.getUnitRecord(cuc);
         r.setAsg1Mark(asg1Mark);
