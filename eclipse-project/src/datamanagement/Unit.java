@@ -164,7 +164,7 @@ public class Unit implements IUnit
         }
         if (aeCutoff >= psCutoff)
         {
-            throw new RuntimeException(Constants.AE
+            throw new RuntimeException(Constants.ADDITIONAL_EXAM
             		+ " cutoff must be less than "
             		+ Constants.PASS + " cutoff");
         }
