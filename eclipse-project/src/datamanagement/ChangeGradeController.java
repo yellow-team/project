@@ -74,7 +74,7 @@ public class ChangeGradeController
     public String checkGrade(float f, float g, float h)
     {
         IUnit u = UnitManager.getInstance().getUnit(cuc);
-        String s = u.getGrade(f, g, h);
+        String s = u.calculateGradeString(f, g, h);
         CGUI.setState4(true);
         CGUI.setState5(false);
         if (changed)

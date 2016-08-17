@@ -60,9 +60,9 @@ public class UnitProxy implements IUnit
     {
         return unitManager.getUnit(unitCode).getAeCutoff();
     }
-    public String getGrade(float f1, float f2, float f3)
+    public String calculateGradeString(float f1, float f2, float f3)
     {
-        return unitManager.getUnit(unitCode).getGrade(f1, f2, f3);
+        return unitManager.getUnit(unitCode).calculateGradeString(f1, f2, f3);
     }
     public void addStudentRecord(IStudentUnitRecord record)
     {

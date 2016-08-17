@@ -188,7 +188,7 @@ public class Unit implements IUnit
         }
     }
 
-    public String getGrade(float asg1Mark, float asg2Mark, float examMark)
+    public String calculateGradeString(float asg1Mark, float asg2Mark, float examMark)
     {
         float total = asg1Mark + asg2Mark + examMark;
 

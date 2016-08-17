@@ -25,7 +25,7 @@ public interface IUnit
     public int getExamWeight();
     public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt);
 
-    public String getGrade(float asg1Mark, float asg2Mark, float examMark);
+    public String calculateGradeString(float asg1Mark, float asg2Mark, float examMark);
 
     public void addStudentRecord(IStudentUnitRecord record);
     public IStudentUnitRecord getStudentRecord(int studentID);
