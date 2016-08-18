@@ -14,9 +14,9 @@ public class Unit implements IUnit
     private StudentUnitRecordList studentUnitRecordList;
 
     public Unit(String unitCode, String unitName, float psCutoff,
-    		float crCutoff, float diCutoff, float hdCutoff, float aeCutoff,
-    		int asg1Weight, int asg2Weight, int examWeight,
-    		StudentUnitRecordList studentUnitRecordList)
+    			float crCutoff, float diCutoff, float hdCutoff, float aeCutoff,
+    			int asg1Weight, int asg2Weight, int examWeight,
+    			StudentUnitRecordList studentUnitRecordList)
     {
         this.unitCode = unitCode;
         this.unitName = unitName;
