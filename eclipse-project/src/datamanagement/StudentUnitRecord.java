@@ -29,22 +29,6 @@ public class StudentUnitRecord implements IStudentUnitRecord
         return unitCode;
     }
 
-    public void setasg1Mark(float asg1Mark)
-    {
-        if (asg1Mark < 0 || asg1Mark > UnitManager.getInstance()
-                .getUnit(unitCode).getAsg1Weight())
-        {
-            throw new RuntimeException
-            ("Mark cannot be less than zero or greater than assessment weight");
-        }
-        this.asg1Mark = asg1Mark;
-    }
-
-    public float getasg1Mark()
-    {
-        return asg1Mark;
-    }
-
     public void setAsg2Mark(float asg2Mark)
     {
         if (asg2Mark < 0 || asg2Mark > UnitManager.getInstance()
