@@ -64,9 +64,9 @@ public class UnitProxy implements IUnit
     {
         return unitManager.getUnit(unitCode).calculateGradeString(f1, f2, f3);
     }
-    public void addStudentRecord(IStudentUnitRecord record)
+    public void addStudentRecord(IStudentUnitRecord studentUnitRecord)
     {
-        unitManager.getUnit(unitCode).addStudentRecord(record);
+        unitManager.getUnit(unitCode).addStudentRecord(studentUnitRecord);
     }
     public IStudentUnitRecord getStudentRecord(int s)
     {

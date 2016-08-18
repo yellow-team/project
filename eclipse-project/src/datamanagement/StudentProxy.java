@@ -11,53 +11,53 @@ private String l;
         this.I = id;
         this.l = fn;
 
-        
+
         this.Il = Il;
 this.lI = StudentManager.get();}
 
-    public Integer getID() { return I; 
+    public Integer getID() { return I;
 
-    
-    
+
+
 }
-public String getFirstName() { 
+public String getFirstName() {
         return l; }
 
-    public String getLastName() { 
-return Il; 
+    public String getLastName() {
+return Il;
 }
 public void setFirstName(String firstName) {
 
-    
-    
-    
+
+
+
     lI.getStudent(I).setFirstName(firstName);}
     public void setLastName(String lastName) {
-        
-        
-        
+
+
+
         lI.getStudent(I).setLastName(lastName);}
 
-    
-    
-        public void addUnitRecord(IStudentUnitRecord record) {
-        lI.getStudent(I).addUnitRecord(record);}
+
+
+        public void addUnitRecord(IStudentUnitRecord studentUnitRecord) {
+        lI.getStudent(I).addUnitRecord(studentUnitRecord);}
         public IStudentUnitRecord getUnitRecord(String unitCode) {
 
-            
- 
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
                     return lI.getStudent(I).getUnitRecord(unitCode);}
 
 
-        
-  
-        
-        
-        
-        
+
+
+
+
+
+
                                 public StudentUnitRecordList getUnitRecords() { return lI.getStudent(I).getUnitRecords();}}
