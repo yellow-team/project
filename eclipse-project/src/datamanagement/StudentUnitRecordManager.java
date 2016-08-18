@@ -175,20 +175,22 @@ public class StudentUnitRecordManager
      * @exception RuntimeException if the student/unit association does not
      * exist.
      */
-    public void saveRecord(IStudentUnitRecord irec)
+    public void saveRecord(IStudentUnitRecord studentUnitRecord)
     {
-        saveRecord(irec, irec.getAsg1Mark(), irec.getAsg2Mark(), irec.getExamMark());
+        saveRecord(studentUnitRecord, studentUnitRecord.getAsg1Mark(),
+        			studentUnitRecord.getAsg2Mark(),
+        			studentUnitRecord.getExamMark());
     }
-    public void saveRecord(IStudentUnitRecord irec, float asg1Mark,
+    public void saveRecord(IStudentUnitRecord studentUnitRecord, float asg1Mark,
             float asg2Mark, float examMark)
     {
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
                 .getRootElement().getChild("studentUnitRecordTable")
                 .getChildren("record"))
         {
-            if (irec.getStudentId().toString().equals
+            if (studentUnitRecord.getStudentId().toString().equals
                     (el.getAttributeValue(Constants.STUDENT_ID))
-                    && irec.getUnitCode().equals
+                    && studentUnitRecord.getUnitCode().equals
                     (el.getAttributeValue(Constants.UNIT_ID)))
             {
                 el.setAttribute(Constants.ASG_1, new Float(asg1Mark)
