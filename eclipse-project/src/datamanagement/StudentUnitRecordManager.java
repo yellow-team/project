@@ -63,13 +63,21 @@ public class StudentUnitRecordManager
                 .getRootElement().getChild("studentUnitRecordTable")
                 .getChildren("record"))
         {
+        	boolean isDebug = java.lang.management.ManagementFactory.getRuntimeMXBean().
+        		    getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
+
             if (studentId.toString().equals
                     (el.getAttributeValue(Constants.STUDENT_ID)) &&
                     unitCode.equals(el.getAttributeValue(Constants.UNIT_ID)))
             {
-                Integer tempStudentId = new Integer
-                        (el.getAttributeValue(Constants.STUDENT_ID));
-                String tempUnitId = el.getAttributeValue(Constants.UNIT_ID);
+            	if(isDebug)
+            	{
+	            	assert(el.getAttributeValue(Constants.STUDENT_ID) ==
+	            			studentId.toString());
+	            	assert(el.getAttributeValue(Constants.UNIT_ID) ==
+	            			unitCode);
+            	}
+                Integer tempStudentId = new Integer(studentId);
                 float tempAsg1Mark = new Float(el.getAttributeValue
                         (Constants.ASG_1)).floatValue();
                 float tempAsg2Mark = new Float(el.getAttributeValue
@@ -78,7 +86,7 @@ public class StudentUnitRecordManager
                         (Constants.EXAM)).floatValue();
 
                 iStudentUnitRecord = new StudentUnitRecord(tempStudentId,
-                                                            tempUnitId,
+                                                            unitCode,
                                                             tempAsg1Mark,
                                                             tempAsg2Mark,
                                                             tempExamMark);
