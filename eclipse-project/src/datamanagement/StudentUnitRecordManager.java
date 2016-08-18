@@ -31,8 +31,11 @@ public class StudentUnitRecordManager
     {
         IStudentUnitRecord iStudentUnitRecord = studentUnitRecordMap.get
                 (studentId, unitCode);
-        return iStudentUnitRecord != null ? iStudentUnitRecord
-                : createStudentUnitRecord(studentId, unitCode);
+        if(iStudentUnitRecord != null)
+        {
+        	return iStudentUnitRecord;
+        }
+        return createStudentUnitRecord(studentId, unitCode);
     }
 
     /**
