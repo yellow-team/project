@@ -14,9 +14,9 @@ public class Unit implements IUnit
     private StudentUnitRecordList studentUnitRecordList;
 
     public Unit(String unitCode, String unitName, float psCutoff,
-    			float crCutoff, float diCutoff, float hdCutoff, float aeCutoff,
-    			int asg1Weight, int asg2Weight, int examWeight,
-    			StudentUnitRecordList studentUnitRecordList)
+                float crCutoff, float diCutoff, float hdCutoff, float aeCutoff,
+                int asg1Weight, int asg2Weight, int examWeight,
+                StudentUnitRecordList studentUnitRecordList)
     {
         this.unitCode = unitCode;
         this.unitName = unitName;
@@ -27,7 +27,7 @@ public class Unit implements IUnit
         this.aeCutoff = aeCutoff;
         setAssessmentWeights(asg1Weight, asg2Weight, examWeight);
         this.studentUnitRecordList = studentUnitRecordList == null ?
-        		new StudentUnitRecordList() : studentUnitRecordList;
+                new StudentUnitRecordList() : studentUnitRecordList;
     }
 
     public String getUnitCode()
@@ -97,11 +97,11 @@ public class Unit implements IUnit
 
     public IStudentUnitRecord getStudentRecord(int studentId)
     {
-        for (IStudentUnitRecord r : studentUnitRecordList)
+        for (IStudentUnitRecord record : studentUnitRecordList)
         {
-            if (r.getStudentId() == studentId)
+            if (record.getStudentId() == studentId)
             {
-                return r;
+                return record;
             }
         }
         return null;
@@ -132,7 +132,7 @@ public class Unit implements IUnit
 
     @Override
     public void setAssessmentWeights(int asg1Weight, int asg2Weight,
-    		int examWeight)
+            int examWeight)
     {
         if (asg1Weight < 0 || asg1Weight > 100 ||
             asg2Weight < 0 || asg2Weight > 100 ||
@@ -151,7 +151,7 @@ public class Unit implements IUnit
     }
 
     private void setCutoffs(float aeCutoff, float psCutoff, float crCutoff,
-    		float diCutoff, float hdCutoff)
+            float diCutoff, float hdCutoff)
     {
         if (psCutoff < 0 || psCutoff > 100 ||
             crCutoff < 0 || crCutoff > 100 ||
@@ -165,26 +165,26 @@ public class Unit implements IUnit
         if (aeCutoff >= psCutoff)
         {
             throw new RuntimeException(Constants.ADDITIONAL_EXAM
-            		+ " cutoff must be less than "
-            		+ Constants.PASS + " cutoff");
+                    + " cutoff must be less than "
+                    + Constants.PASS + " cutoff");
         }
         if (psCutoff >= crCutoff)
         {
             throw new RuntimeException(Constants.PASS
-            		+ " cutoff must be less than "
-            		+ Constants.CREDIT +" cutoff");
+                    + " cutoff must be less than "
+                    + Constants.CREDIT +" cutoff");
         }
         if (crCutoff >= diCutoff)
         {
             throw new RuntimeException(Constants.CREDIT
-            		+ " cutoff must be less than " + Constants.DISTINCTION
-            		+ " cutoff");
+                    + " cutoff must be less than " + Constants.DISTINCTION
+                    + " cutoff");
         }
         if (diCutoff >= hdCutoff)
         {
             throw new RuntimeException(Constants.DISTINCTION
-            		+ " cutoff must be less than "
-            		+ Constants.HIGH_DISTINCTION + " cutoff");
+                    + " cutoff must be less than "
+                    + Constants.HIGH_DISTINCTION + " cutoff");
         }
     }
 
@@ -197,7 +197,7 @@ public class Unit implements IUnit
                 examMark < 0 || examMark > examWeight )
         {
             throw new RuntimeException("marks cannot be less than zero "
-            		+ "or greater than assessment weights");
+                    + "or greater than assessment weights");
         }
 
         if (total < aeCutoff)

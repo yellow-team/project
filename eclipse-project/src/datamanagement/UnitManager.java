@@ -55,7 +55,7 @@ public class UnitManager
                                 el.getAttributeValue("asg2wgt")).intValue(),
                         Integer.valueOf(el.getAttributeValue("examwgt"))
                                 .intValue(), StudentUnitRecordManager
-                                .getInstance().getRecordsByUnit(unitCode));
+                                .getInstance().getStudentUnitRecordsByUnit(unitCode));
                 unitMap.put(iUnit.getUnitCode(), iUnit);
                 return iUnit;
             }
