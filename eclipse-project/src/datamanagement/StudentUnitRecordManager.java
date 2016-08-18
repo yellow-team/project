@@ -7,8 +7,8 @@ public class StudentUnitRecordManager
 {
     private static StudentUnitRecordManager self = null;
     private StudentUnitRecordMap studentUnitRecordMap;
-    private java.util.HashMap<String,StudentUnitRecordList> mapByUnitCode;
-    private java.util.HashMap<Integer,StudentUnitRecordList> mapByStudentId;
+    private java.util.HashMap<String,StudentUnitRecordList> mapStudentUnitRecordListByUnitCode;
+    private java.util.HashMap<Integer,StudentUnitRecordList> mapStudentUnitRecordListByStudentId;
 
     public static StudentUnitRecordManager getInstance()
     {
@@ -22,8 +22,8 @@ public class StudentUnitRecordManager
     private StudentUnitRecordManager()
     {
         studentUnitRecordMap = new StudentUnitRecordMap();
-        mapByUnitCode = new java.util.HashMap<>();
-        mapByStudentId = new java.util.HashMap<>();
+        mapStudentUnitRecordListByUnitCode = new java.util.HashMap<>();
+        mapStudentUnitRecordListByStudentId = new java.util.HashMap<>();
     }
 
     public IStudentUnitRecord getStudentUnitRecord(Integer studentId,
@@ -97,7 +97,7 @@ public class StudentUnitRecordManager
      */
     public StudentUnitRecordList getRecordsByUnit(String unitCode)
     {
-        StudentUnitRecordList recs = mapByUnitCode.get(unitCode);
+        StudentUnitRecordList recs = mapStudentUnitRecordListByUnitCode.get(unitCode);
         if (recs != null)
         {
             return recs;
@@ -116,7 +116,7 @@ public class StudentUnitRecordManager
         }
         if (recs.size() > 0)
         {
-            mapByUnitCode.put(unitCode, recs);
+            mapStudentUnitRecordListByUnitCode.put(unitCode, recs);
         }
         return recs;
     }
@@ -133,7 +133,7 @@ public class StudentUnitRecordManager
      */
     public StudentUnitRecordList getRecordsByStudent(Integer studentId)
     {
-        StudentUnitRecordList recs = mapByStudentId.get(studentId);
+        StudentUnitRecordList recs = mapStudentUnitRecordListByStudentId.get(studentId);
         if (recs != null)
         {
             return recs;
@@ -153,7 +153,7 @@ public class StudentUnitRecordManager
         }
         if (recs.size() > 0)
         {
-            mapByStudentId.put(studentId, recs);
+            mapStudentUnitRecordListByStudentId.put(studentId, recs);
         }
         return recs;
     }
