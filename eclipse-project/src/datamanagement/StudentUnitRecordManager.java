@@ -26,16 +26,16 @@ public class StudentUnitRecordManager
         mapStudentUnitRecordListByStudentId = new java.util.HashMap<>();
     }
 
-    public IStudentUnitRecord getStudentUnitRecord(Integer studentId,
-                                                   String unitCode)
+    public IStudentUnitRecord getStudentUnitRecord(Integer unitCode,
+                                                   String studentId)
     {
         IStudentUnitRecord iStudentUnitRecord = studentUnitRecordMap.get
-                (studentId, unitCode);
+                (unitCode, studentId);
         if(iStudentUnitRecord != null)
         {
         	return iStudentUnitRecord;
         }
-        return createStudentUnitRecord(studentId, unitCode);
+        return createStudentUnitRecord(unitCode, studentId);
     }
 
     /**
@@ -55,17 +55,17 @@ public class StudentUnitRecordManager
      * @exception RuntimException if no association between the given unit code
      * and student ID exists.
      */
-    private IStudentUnitRecord createStudentUnitRecord(Integer unitCode,
-            String studentId)
+    private IStudentUnitRecord createStudentUnitRecord(Integer studentId,
+            String unitCode)
     {
         IStudentUnitRecord iStudentUnitRecord;
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
                 .getRootElement().getChild("studentUnitRecordTable")
                 .getChildren("record"))
         {
-            if (unitCode.toString().equals
+            if (studentId.toString().equals
                     (el.getAttributeValue(Constants.STUDENT_ID)) &&
-                    studentId.equals(el.getAttributeValue(Constants.UNIT_ID)))
+                    unitCode.equals(el.getAttributeValue(Constants.UNIT_ID)))
             {
                 Integer sid_el = new Integer
                         (el.getAttributeValue(Constants.STUDENT_ID));
