@@ -22,10 +22,10 @@ public class UnitManager
         unitMap = new UnitMap();
     }
 
-    public IUnit getUnit(String key)
+    public IUnit getUnit(String unitCode)
     {
-        IUnit iUnit = unitMap.get(key);
-        return iUnit != null ? iUnit : createUnit(key);
+        IUnit iUnit = unitMap.get(unitCode);
+        return iUnit != null ? iUnit : createUnit(unitCode);
     }
 
     private IUnit createUnit(String unitCode)
