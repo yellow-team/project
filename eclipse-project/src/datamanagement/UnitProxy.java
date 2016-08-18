@@ -110,6 +110,6 @@ public class UnitProxy implements IUnit
     public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt)
     {
         unitManager.getUnit(unitCode).setAssessmentWeights(asg1Wgt, asg2Wgt,
-        		examWgt);
+                                                            examWgt);
     }
 }
