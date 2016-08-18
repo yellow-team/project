@@ -26,13 +26,13 @@ public class StudentUnitRecordManager
         mapByStudentId = new java.util.HashMap<>();
     }
 
-    public IStudentUnitRecord getStudentUnitRecord(Integer studentID,
+    public IStudentUnitRecord getStudentUnitRecord(Integer studentId,
     		String unitCode)
     {
         IStudentUnitRecord iStudentUnitRecord = studentUnitRecordMap.get
-        		(studentID, unitCode);
+        		(studentId, unitCode);
         return iStudentUnitRecord != null ? iStudentUnitRecord
-        		: createStudentUnitRecord(studentID, unitCode);
+        		: createStudentUnitRecord(studentId, unitCode);
     }
 
     /**
@@ -131,9 +131,9 @@ public class StudentUnitRecordManager
      * @return StudentUnitRecordList of all associations between units and the
      * student ID given.
      */
-    public StudentUnitRecordList getRecordsByStudent(Integer studentID)
+    public StudentUnitRecordList getRecordsByStudent(Integer studentId)
     {
-        StudentUnitRecordList recs = mapByStudentId.get(studentID);
+        StudentUnitRecordList recs = mapByStudentId.get(studentId);
         if (recs != null)
         {
             return recs;
@@ -143,7 +143,7 @@ public class StudentUnitRecordManager
         		.getRootElement().getChild("studentUnitRecordTable")
         		.getChildren("record"))
         {
-            if (studentID.toString().equals
+            if (studentId.toString().equals
             		(el.getAttributeValue(Constants.STUDENT_ID)))
             {
                 recs.add(new StudentUnitRecordProxy(new Integer
@@ -153,7 +153,7 @@ public class StudentUnitRecordManager
         }
         if (recs.size() > 0)
         {
-            mapByStudentId.put(studentID, recs);
+            mapByStudentId.put(studentId, recs);
         }
         return recs;
     }

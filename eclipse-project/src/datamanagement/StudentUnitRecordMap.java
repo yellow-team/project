@@ -10,9 +10,9 @@ java.util.HashMap<String, IStudentUnitRecord>
      * same name as Map's method to increase familiarity and make it easy to
      * stumble across this one instead of Map's.
      */
-    public IStudentUnitRecord get(Integer studentID, String unitCode)
+    public IStudentUnitRecord get(Integer studentId, String unitCode)
     {
-        return super.get(studentID.toString() + unitCode);
+        return super.get(studentId.toString() + unitCode);
     }
 
     /**
@@ -20,10 +20,10 @@ java.util.HashMap<String, IStudentUnitRecord>
      * same name as Map's method to increase familiarity and make it easy to
      * stumble across this one instead of Map's.
      */
-    public void put(Integer studentID, String unitCode,
+    public void put(Integer studentId, String unitCode,
     		IStudentUnitRecord iStudentUnitRecord)
     {
-        super.put(studentID.toString() + unitCode, iStudentUnitRecord);
+        super.put(studentId.toString() + unitCode, iStudentUnitRecord);
     }
     //TODO: find out how to disable super's methods from being
     //accessed to force use of these.
