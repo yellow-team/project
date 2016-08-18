@@ -59,7 +59,7 @@ throw new RuntimeException("DBMD: createStudent : student not in file");}
 
 s = new StudentMap();
 IStudent is;
-    StudentUnitRecordList ur = StudentUnitRecordManager.getInstance().getRecordsByUnit(uc);
+    StudentUnitRecordList ur = StudentUnitRecordManager.getInstance().getStudentUnitRecordsByUnit(uc);
         for (IStudentUnitRecord S : ur) {
 
 

@@ -88,7 +88,7 @@ public class StudentUnitRecordManager
             }
         }
         throw new RuntimeException
-        ("DBMD: createStudent : student unit record not in file");
+            ("DBMD: createStudent : student unit record not in file");
     }
 
     /**
