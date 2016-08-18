@@ -21,7 +21,7 @@ extends java.util.HashMap<String, IStudentUnitRecord>
      * stumble across this one instead of Map's.
      */
     public void put(Integer studentId, String unitCode,
-    		IStudentUnitRecord iStudentUnitRecord)
+                    IStudentUnitRecord iStudentUnitRecord)
     {
         super.put(studentId.toString() + unitCode, iStudentUnitRecord);
     }
