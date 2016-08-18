@@ -27,8 +27,8 @@ public interface IUnit
 
     public String calculateGradeString(float asg1Mark, float asg2Mark, float examMark);
 
-    public void addStudentRecord(IStudentUnitRecord studentUnitRecord);
-    public IStudentUnitRecord getStudentRecord(int studentId);
+    public void addStudentUnitRecord(IStudentUnitRecord studentUnitRecord);
+    public IStudentUnitRecord getStudentUnitRecord(int studentId);
 
-    public StudentUnitRecordList getStudentRecordList();
+    public StudentUnitRecordList getStudentUnitRecordList();
 }

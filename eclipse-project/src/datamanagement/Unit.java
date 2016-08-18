@@ -90,12 +90,12 @@ public class Unit implements IUnit
         return aeCutoff;
     }
 
-    public void addStudentRecord(IStudentUnitRecord studentUnitRecord)
+    public void addStudentUnitRecord(IStudentUnitRecord studentUnitRecord)
     {
         studentUnitRecordList.add(studentUnitRecord);
     }
 
-    public IStudentUnitRecord getStudentRecord(int studentId)
+    public IStudentUnitRecord getStudentUnitRecord(int studentId)
     {
         for (IStudentUnitRecord record : studentUnitRecordList)
         {
@@ -107,7 +107,7 @@ public class Unit implements IUnit
         return null;
     }
 
-    public StudentUnitRecordList getStudentRecordList()
+    public StudentUnitRecordList getStudentUnitRecordList()
     {
         return studentUnitRecordList;
     }
