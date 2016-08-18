@@ -33,7 +33,7 @@ public class StudentUnitRecordManager
                 (unitCode, studentId);
         if(iStudentUnitRecord != null)
         {
-        	return iStudentUnitRecord;
+            return iStudentUnitRecord;
         }
         return createStudentUnitRecord(unitCode, studentId);
     }
@@ -56,7 +56,7 @@ public class StudentUnitRecordManager
      * and student ID exists.
      */
     private IStudentUnitRecord createStudentUnitRecord(Integer studentId,
-            String unitCode)
+                                                        String unitCode)
     {
         IStudentUnitRecord iStudentUnitRecord;
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
@@ -67,18 +67,21 @@ public class StudentUnitRecordManager
                     (el.getAttributeValue(Constants.STUDENT_ID)) &&
                     unitCode.equals(el.getAttributeValue(Constants.UNIT_ID)))
             {
-                Integer sid_el = new Integer
+                Integer tempStudentId = new Integer
                         (el.getAttributeValue(Constants.STUDENT_ID));
-                String uid_el = el.getAttributeValue(Constants.UNIT_ID);
-                float asg1_el = new Float(el.getAttributeValue(Constants.ASG_1))
-                        .floatValue();
-                float asg2_el = new Float(el.getAttributeValue(Constants.ASG_2))
-                        .floatValue();
-                float exam_el = new Float(el.getAttributeValue(Constants.EXAM))
-                        .floatValue();
+                String tempUnitId = el.getAttributeValue(Constants.UNIT_ID);
+                float tempAsg1Mark = new Float(el.getAttributeValue
+                        (Constants.ASG_1)).floatValue();
+                float tempAsg2Mark = new Float(el.getAttributeValue
+                        (Constants.ASG_2)).floatValue();
+                float tempExamMark = new Float(el.getAttributeValue
+                        (Constants.EXAM)).floatValue();
 
-                iStudentUnitRecord = new StudentUnitRecord(sid_el, uid_el,
-                        asg1_el, asg2_el, exam_el);
+                iStudentUnitRecord = new StudentUnitRecord(tempStudentId,
+                                                            tempUnitId,
+                                                            tempAsg1Mark,
+                                                            tempAsg2Mark,
+                                                            tempExamMark);
                 studentUnitRecordMap.put(iStudentUnitRecord.getStudentId(),
                         iStudentUnitRecord.getUnitCode(), iStudentUnitRecord);
                 return iStudentUnitRecord;
