@@ -21,18 +21,18 @@ public class StudentUnitRecordManager
 
     private StudentUnitRecordManager()
     {
-        studentUnitRecordMap = new StudentUnitRecordMap();
-        mapStudentUnitRecordListByUnitCode = new java.util.HashMap<>();
+        studentUnitRecordMap                = new StudentUnitRecordMap();
+        mapStudentUnitRecordListByUnitCode  = new java.util.HashMap<>();
         mapStudentUnitRecordListByStudentId = new java.util.HashMap<>();
     }
 
     public IStudentUnitRecord getStudentUnitRecord(Integer studentId,
-    		String unitCode)
+            String unitCode)
     {
         IStudentUnitRecord iStudentUnitRecord = studentUnitRecordMap.get
-        		(studentId, unitCode);
+                (studentId, unitCode);
         return iStudentUnitRecord != null ? iStudentUnitRecord
-        		: createStudentUnitRecord(studentId, unitCode);
+                : createStudentUnitRecord(studentId, unitCode);
     }
 
     /**
@@ -53,31 +53,31 @@ public class StudentUnitRecordManager
      * and student ID exists.
      */
     private IStudentUnitRecord createStudentUnitRecord(Integer unitCode,
-    		String studentId)
+            String studentId)
     {
         IStudentUnitRecord iStudentUnitRecord;
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-        		.getRootElement().getChild("studentUnitRecordTable")
-        		.getChildren("record"))
+                .getRootElement().getChild("studentUnitRecordTable")
+                .getChildren("record"))
         {
             if (unitCode.toString().equals
-            		(el.getAttributeValue(Constants.STUDENT_ID)) &&
-            		studentId.equals(el.getAttributeValue(Constants.UNIT_ID)))
+                    (el.getAttributeValue(Constants.STUDENT_ID)) &&
+                    studentId.equals(el.getAttributeValue(Constants.UNIT_ID)))
             {
                 Integer sid_el = new Integer
-                		(el.getAttributeValue(Constants.STUDENT_ID));
+                        (el.getAttributeValue(Constants.STUDENT_ID));
                 String uid_el = el.getAttributeValue(Constants.UNIT_ID);
                 float asg1_el = new Float(el.getAttributeValue(Constants.ASG_1))
-                		.floatValue();
+                        .floatValue();
                 float asg2_el = new Float(el.getAttributeValue(Constants.ASG_2))
-                		.floatValue();
+                        .floatValue();
                 float exam_el = new Float(el.getAttributeValue(Constants.EXAM))
-                		.floatValue();
+                        .floatValue();
 
                 iStudentUnitRecord = new StudentUnitRecord(sid_el, uid_el,
-                		asg1_el, asg2_el, exam_el);
+                        asg1_el, asg2_el, exam_el);
                 studentUnitRecordMap.put(iStudentUnitRecord.getStudentId(),
-                		iStudentUnitRecord.getUnitCode(), iStudentUnitRecord);
+                        iStudentUnitRecord.getUnitCode(), iStudentUnitRecord);
                 return iStudentUnitRecord;
             }
         }
@@ -104,14 +104,14 @@ public class StudentUnitRecordManager
         }
         recs = new StudentUnitRecordList();
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-        		.getRootElement().getChild("studentUnitRecordTable")
-        		.getChildren("record"))
+                .getRootElement().getChild("studentUnitRecordTable")
+                .getChildren("record"))
         {
             if (unitCode.equals(el.getAttributeValue(Constants.UNIT_ID)))
             {
                 recs.add(new StudentUnitRecordProxy(new Integer
-                		(el.getAttributeValue(Constants.STUDENT_ID)),
-                		el.getAttributeValue(Constants.UNIT_ID)));
+                        (el.getAttributeValue(Constants.STUDENT_ID)),
+                        el.getAttributeValue(Constants.UNIT_ID)));
             }
         }
         if (recs.size() > 0)
@@ -140,15 +140,15 @@ public class StudentUnitRecordManager
         }
         recs = new StudentUnitRecordList();
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-        		.getRootElement().getChild("studentUnitRecordTable")
-        		.getChildren("record"))
+                .getRootElement().getChild("studentUnitRecordTable")
+                .getChildren("record"))
         {
             if (studentId.toString().equals
-            		(el.getAttributeValue(Constants.STUDENT_ID)))
+                    (el.getAttributeValue(Constants.STUDENT_ID)))
             {
                 recs.add(new StudentUnitRecordProxy(new Integer
-                		(el.getAttributeValue(Constants.STUDENT_ID)),
-                		el.getAttributeValue(Constants.UNIT_ID)));
+                        (el.getAttributeValue(Constants.STUDENT_ID)),
+                        el.getAttributeValue(Constants.UNIT_ID)));
             }
         }
         if (recs.size() > 0)
@@ -172,29 +172,29 @@ public class StudentUnitRecordManager
         saveRecord(irec, irec.getAsg1Mark(), irec.getAsg2Mark(), irec.getExamMark());
     }
     public void saveRecord(IStudentUnitRecord irec, float asg1Mark,
-    		float asg2Mark, float examMark)
+            float asg2Mark, float examMark)
     {
-    	for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-        		.getRootElement().getChild("studentUnitRecordTable")
-        		.getChildren("record"))
+        for (Element el : (List<Element>) XMLManager.getXML().getDocument()
+                .getRootElement().getChild("studentUnitRecordTable")
+                .getChildren("record"))
         {
             if (irec.getStudentId().toString().equals
-            		(el.getAttributeValue(Constants.STUDENT_ID))
-            		&& irec.getUnitCode().equals
-            		(el.getAttributeValue(Constants.UNIT_ID)))
+                    (el.getAttributeValue(Constants.STUDENT_ID))
+                    && irec.getUnitCode().equals
+                    (el.getAttributeValue(Constants.UNIT_ID)))
             {
                 el.setAttribute(Constants.ASG_1, new Float(asg1Mark)
-                		.toString());
+                        .toString());
                 el.setAttribute(Constants.ASG_2, new Float(asg2Mark)
-                		.toString());
+                        .toString());
                 el.setAttribute(Constants.EXAM, new Float(examMark)
-                		.toString());
+                        .toString());
                 XMLManager.getXML().saveDocument();
                 return;
             }
         }
 
         throw new RuntimeException("DBMD: saveRecord : "
-        		+ "no such student record in data");
+                + "no such student record in data");
     }
 }
