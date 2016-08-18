@@ -101,30 +101,32 @@ public class StudentUnitRecordManager
      * @return StudentUnitRecordList of all associations between students
      * and the given unit code.
      */
-    public StudentUnitRecordList getRecordsByUnit(String unitCode)
+    public StudentUnitRecordList getStudentUnitRecordsByUnit(String unitCode)
     {
-        StudentUnitRecordList recs = mapStudentUnitRecordListByUnitCode.get(unitCode);
-        if (recs != null)
+        StudentUnitRecordList studentUnitRecordList =
+                mapStudentUnitRecordListByUnitCode.get(unitCode);
+        if (studentUnitRecordList != null)
         {
-            return recs;
+            return studentUnitRecordList;
         }
-        recs = new StudentUnitRecordList();
+        studentUnitRecordList = new StudentUnitRecordList();
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
                 .getRootElement().getChild("studentUnitRecordTable")
                 .getChildren("record"))
         {
             if (unitCode.equals(el.getAttributeValue(Constants.UNIT_ID)))
             {
-                recs.add(new StudentUnitRecordProxy(new Integer
+                studentUnitRecordList.add(new StudentUnitRecordProxy(new Integer
                         (el.getAttributeValue(Constants.STUDENT_ID)),
                         el.getAttributeValue(Constants.UNIT_ID)));
             }
         }
-        if (recs.size() > 0)
+        if (studentUnitRecordList.size() > 0)
         {
-            mapStudentUnitRecordListByUnitCode.put(unitCode, recs);
+            mapStudentUnitRecordListByUnitCode.put
+                (unitCode, studentUnitRecordList);
         }
-        return recs;
+        return studentUnitRecordList;
     }
 
     /**
