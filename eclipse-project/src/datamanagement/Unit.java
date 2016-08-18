@@ -132,14 +132,14 @@ public class Unit implements IUnit
 
     @Override
     public void setAssessmentWeights(int asg1Weight, int asg2Weight,
-            int examWeight)
+                                    int examWeight)
     {
         if (asg1Weight < 0 || asg1Weight > 100 ||
             asg2Weight < 0 || asg2Weight > 100 ||
             examWeight < 0 || examWeight > 100 )
         {
-            throw new RuntimeException
-            ("Assessment weights cant be less than zero or greater than 100");
+            throw new RuntimeException("Assessment weights cant be less " +
+                                        "than zero or greater than 100");
         }
         if (asg1Weight + asg2Weight + examWeight != 100)
         {
@@ -151,7 +151,7 @@ public class Unit implements IUnit
     }
 
     private void setCutoffs(float aeCutoff, float psCutoff, float crCutoff,
-            float diCutoff, float hdCutoff)
+                            float diCutoff, float hdCutoff)
     {
         if (psCutoff < 0 || psCutoff > 100 ||
             crCutoff < 0 || crCutoff > 100 ||
@@ -159,32 +159,32 @@ public class Unit implements IUnit
             hdCutoff < 0 || hdCutoff > 100 ||
             aeCutoff < 0 || aeCutoff > 100 )
         {
-            throw new RuntimeException
-            ("Assessment cutoffs cant be less than zero or greater than 100");
+            throw new RuntimeException("Assessment cutoffs can't be " +
+                                        "less than zero or greater than 100");
         }
         if (aeCutoff >= psCutoff)
         {
-            throw new RuntimeException(Constants.ADDITIONAL_EXAM
-                    + " cutoff must be less than "
-                    + Constants.PASS + " cutoff");
+            throw new RuntimeException(Constants.ADDITIONAL_EXAM +
+                                        " cutoff must be less than " +
+                                        Constants.PASS + " cutoff");
         }
         if (psCutoff >= crCutoff)
         {
-            throw new RuntimeException(Constants.PASS
-                    + " cutoff must be less than "
-                    + Constants.CREDIT +" cutoff");
+            throw new RuntimeException(Constants.PASS +
+                                        " cutoff must be less than " +
+                                        Constants.CREDIT +" cutoff");
         }
         if (crCutoff >= diCutoff)
         {
-            throw new RuntimeException(Constants.CREDIT
-                    + " cutoff must be less than " + Constants.DISTINCTION
-                    + " cutoff");
+            throw new RuntimeException(Constants.CREDIT +
+                                        " cutoff must be less than " +
+                                        Constants.DISTINCTION + " cutoff");
         }
         if (diCutoff >= hdCutoff)
         {
-            throw new RuntimeException(Constants.DISTINCTION
-                    + " cutoff must be less than "
-                    + Constants.HIGH_DISTINCTION + " cutoff");
+            throw new RuntimeException(Constants.DISTINCTION +
+                                        " cutoff must be less than " +
+                                        Constants.HIGH_DISTINCTION + " cutoff");
         }
     }
 
@@ -193,11 +193,11 @@ public class Unit implements IUnit
         float total = asg1Mark + asg2Mark + examMark;
 
         if (asg1Mark < 0 || asg1Mark > asg1Weight ||
-                asg2Mark < 0 || asg2Mark > asg2Weight ||
-                examMark < 0 || examMark > examWeight )
+            asg2Mark < 0 || asg2Mark > asg2Weight ||
+            examMark < 0 || examMark > examWeight )
         {
-            throw new RuntimeException("marks cannot be less than zero "
-                    + "or greater than assessment weights");
+            throw new RuntimeException("marks cannot be less than zero " +
+                                        "or greater than assessment weights");
         }
 
         if (total < aeCutoff)
@@ -205,14 +205,21 @@ public class Unit implements IUnit
             return "FL";
         }
         else if (total < psCutoff)
+        {
             return "AE";
+        }
         else if (total < crCutoff)
+        {
             return "PS";
+        }
         else if (total < diCutoff)
+        {
             return "CR";
+        }
         else if (total < hdCutoff)
+        {
             return "DI";
-        else
-            return "HD";
+        }
+        return "HD";
     }
 }
