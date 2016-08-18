@@ -27,7 +27,7 @@ public class StudentUnitRecordManager
     }
 
     public IStudentUnitRecord getStudentUnitRecord(Integer studentId,
-            String unitCode)
+                                                   String unitCode)
     {
         IStudentUnitRecord iStudentUnitRecord = studentUnitRecordMap.get
                 (studentId, unitCode);
