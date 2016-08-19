@@ -12,13 +12,13 @@ public class Student implements IStudent
     private String                firstName;
     private String                lastName;
     private StudentUnitRecordList studentUnitRecordList;
-    
+
     /**
      * Creates a new Student object
      * @param id The ID number of the student, used as a key elsewhere.
      * @param firstName Student's first name.
      * @param lastName Student's last name.
-     * @param studentUnitRecordList A StudentUnitRecordList of the 
+     * @param studentUnitRecordList A StudentUnitRecordList of the
      * subjects the student has marks for. If null is passed in place
      * of a StudentUnitRecordList, an empty StudentUnitRecordList
      * will be created.
@@ -39,43 +39,43 @@ public class Student implements IStudent
             this.studentUnitRecordList = studentUnitRecordList;
         }
     }
-    
-    
+
+
     public Integer getStudentId()
     {
         return this.id;
     }
-    
-    
+
+
     public String getFirstName()
     {
         return firstName;
     }
-    
-    
+
+
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
-    
-    
+
+
     public String getLastName()
     {
         return lastName;
     }
-    
-    
+
+
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
-    
-    
+
+
     public void addUnitRecord(IStudentUnitRecord studentUnitRecord)
     {
         studentUnitRecordList.add(studentUnitRecord);
     }
-    
+
     /**
      * Looks up an IStudentUnitRecord given the unitCode
      * @param unitCode the code of the Unit to look up
@@ -92,8 +92,8 @@ public class Student implements IStudent
         }
         return null;
     }
-    
-    
+
+
     public StudentUnitRecordList getStudentUnitRecordList()
     {
         return studentUnitRecordList;

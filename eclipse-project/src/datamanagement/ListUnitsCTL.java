@@ -10,7 +10,7 @@ public class ListUnitsCTL
 
     public ListUnitsCTL()
     {
-        unitManager = UnitManager.UM();
+        unitManager = UnitManager.getInstance();
     }
 
     /**

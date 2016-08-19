@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -405,8 +406,8 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             controller.selectStudent(studentId);
         }
     }// GEN-LAST:event_jComboBox2ItemStateChanged
-    
-    
+
+
     private boolean computeInputValidity()
     {
         try
@@ -418,8 +419,8 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             errorMessageLabel.setText("Invalid number for assignment 1 mark.");
             return false;
         }
-        
-        
+
+
         try
         {
             Float.parseFloat(asg2MarkTextField.getText());
@@ -429,8 +430,8 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             errorMessageLabel.setText("Invalid number for assignment 2 mark.");
             return false;
         }
-        
-        
+
+
         try
         {
             Float.parseFloat(examMarkTextField.getText());
@@ -440,16 +441,16 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             errorMessageLabel.setText("Invalid number for exam mark.");
             return false;
         }
-        
+
         return true;
     }
-    
-    
-    
+
+
+
     private void checkGradeButtonActionPerformed(java.awt.event.ActionEvent evt)
     {// GEN-FIRST:event_jButton3ActionPerformed
         boolean inputValid = computeInputValidity();
-        
+
         if (inputValid)
         {
             asg1Mark = new Float(asg1MarkTextField.getText()).floatValue();
@@ -458,7 +459,7 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             // lblErrMsg.setText("");
             try
             {
-                String s = controller.computeGradeString(asg1Mark, 
+                String s = controller.computeGradeString(asg1Mark,
                                                          asg2Mark,
                                                          examMark);
                 gradeLabel.setText(s);
@@ -481,12 +482,30 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
     {// GEN-FIRST:event_jTextField1KeyTyped
         gradeLabel.setText("");
         errorMessageLabel.setText("");
+
+        //The following prevents entering more than four characters (will
+        //only ever be two digits, a decimal point, and one more digit)
+        if(asg1MarkTextField.getText().length() >= 4 && asg1MarkTextField ==
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner())
+        {
+            asg1MarkTextField.setText(asg1MarkTextField.getText().substring(0, 3));
+        }
+        if(asg2MarkTextField.getText().length() >= 4 && asg2MarkTextField ==
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner())
+        {
+            asg2MarkTextField.setText(asg2MarkTextField.getText().substring(0, 3));
+        }
+        if(examMarkTextField.getText().length() >= 4 && examMarkTextField ==
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner())
+        {
+            examMarkTextField.setText(examMarkTextField.getText().substring(0, 3));
+        }
     }// GEN-LAST:event_jTextField1KeyTyped
 
     private void checkMarksButtonActionPerformed(java.awt.event.ActionEvent evt)
     {// GEN-FIRST:event_jButton2ActionPerformed
         boolean inputValid = computeInputValidity();
-        
+
         if (inputValid)
         {
             float changedAsg1Mark = new Float(asg1MarkTextField.getText())
@@ -496,11 +515,11 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
             float changedExamMark = new Float(examMarkTextField.getText())
                     .floatValue();
             errorMessageLabel.setText("");
-            
+
             try
             {
-                controller.saveGrade(changedAsg1Mark, 
-                                     changedAsg2Mark, 
+                controller.saveGrade(changedAsg1Mark,
+                                     changedAsg2Mark,
                                      changedExamMark);
             }
             catch (RuntimeException re)
@@ -517,27 +536,27 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
         clearStudents();
     }
 
-    
+
     public void addUnit(IUnit unit)
     {
         unitComboBoxModel.addElement(unit.getUnitCode());
     }
 
-    
+
     public void setUnitComboBoxEnabled(boolean b)
     {
         unitComboBox.setEnabled(b);
         errorMessageLabel.setText("");
     }
 
-    
+
     public void clearStudents()
     {
         studentComboBoxModel.removeAllElements();
         studentComboBoxModel.addElement(Constants.NONE_SELECTED);
     }
 
-    
+
     public void addStudent(IStudent student)
     {
         studentComboBoxModel.addElement(student.getStudentId().toString() + " : "
@@ -552,9 +571,9 @@ public class ChangeGradeUI extends JFrame implements IUnitLister, IStudentLister
 
     public void setRecord(IStudentUnitRecord record)
     {
-        asg1MarkTextField.setText(new Float(record.getAsg1()).toString());
-        asg2MarkTextField.setText(new Float(record.getAsg2()).toString());
-        examMarkTextField.setText(new Float(record.getExam()).toString());
+        asg1MarkTextField.setText(new Float(record.getAsg1Mark()).toString());
+        asg2MarkTextField.setText(new Float(record.getAsg2Mark()).toString());
+        examMarkTextField.setText(new Float(record.getExamMark()).toString());
         gradeLabel.setText("");
     }
 

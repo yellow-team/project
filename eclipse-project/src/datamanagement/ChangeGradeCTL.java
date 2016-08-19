@@ -11,29 +11,29 @@ public class ChangeGradeCTL
     String        selectedUnitCode     = null;
     Integer       selectedStudentID    = null;
     boolean       activeRecordSaveable = false;
-    
-    
+
+
     public void startUserInterface()
     {
         userInterface = new ChangeGradeUI(this);
-        
+
         userInterface.setUnitComboBoxEnabled(false);
         userInterface.setStudentComboBoxEnabled(false);
         userInterface.setCheckGradeButtonEnabled(false);
         userInterface.setChangeMarksButtonEnabled(false);
         userInterface.setMarksTextFieldsEnabled(false);
         userInterface.setSaveChangesButtonEnabled(false);
-        
+
         userInterface.refresh();
-        
+
         ListUnitsCTL listUnitsController = new ListUnitsCTL();
         listUnitsController.listUnits(userInterface);
         userInterface.setVisible(true);
         userInterface.setUnitComboBoxEnabled(true);
     }
-    
-    
-    
+
+
+
     public void selectUnit(String unitCode)
     {
         if (unitCode.equals(Constants.NONE_SELECTED))
@@ -49,9 +49,9 @@ public class ChangeGradeCTL
         }
         userInterface.setCheckGradeButtonEnabled(false);
     }
-    
-    
-    
+
+
+
     public void selectStudent(Integer studentId)
     {
         selectedStudentID = studentId;
@@ -68,7 +68,7 @@ public class ChangeGradeCTL
             IStudent student = StudentManager.getInstance()
                     .getStudent(studentId);
             IStudentUnitRecord record = student.getUnitRecord(selectedUnitCode);
-            
+
             userInterface.setRecord(record);
             userInterface.setCheckGradeButtonEnabled(true);
             userInterface.setChangeMarksButtonEnabled(true);
@@ -77,22 +77,22 @@ public class ChangeGradeCTL
             activeRecordSaveable = false;
         }
     }
-    
-    
+
+
     /**
      * Computes the grade string from the given marks.
      * @param asg1Mark Mark for Assignment 1
      * @param asg2Mark Mark for Assignment 2
      * @param examMark Mark for the exam
-     * @return A String of the grade achieved with these marks 
+     * @return A String of the grade achieved with these marks
      * (FL, AE, PS, CR, DN, HD)
      */
     public String computeGradeString(float asg1Mark,
                                      float asg2Mark,
                                      float examMark)
     {
-        IUnit unit = UnitManager.UM().getUnit(selectedUnitCode);
-        String grade = unit.getGrade(asg1Mark, asg2Mark, examMark);
+        IUnit unit = UnitManager.getInstance().getUnit(selectedUnitCode);
+        String grade = unit.calculateGradeString(asg1Mark, asg2Mark, examMark);
         userInterface.setChangeMarksButtonEnabled(true);
         userInterface.setMarksTextFieldsEnabled(false);
         if (activeRecordSaveable)
@@ -101,9 +101,9 @@ public class ChangeGradeCTL
         }
         return grade;
     }
-    
-    
-    
+
+
+
     public void enableChangeMarks()
     {
         userInterface.setChangeMarksButtonEnabled(false);
@@ -112,7 +112,7 @@ public class ChangeGradeCTL
         activeRecordSaveable = true;
     }
 
-    
+
     /**
      * Finds the StudentUnitRecord with the currently selected Unit and Student,
      * updates it with the provided marks, and tells the StudentUnitRecord
@@ -123,17 +123,17 @@ public class ChangeGradeCTL
      */
     public void saveGrade(float asg1Mark, float asg2Mark, float examMark)
     {
-        IUnit unit = UnitManager.UM().getUnit(selectedUnitCode);
+        IUnit unit = UnitManager.getInstance().getUnit(selectedUnitCode);
         IStudent student = StudentManager.getInstance()
                                             .getStudent(selectedStudentID);
 
         IStudentUnitRecord record = student.getUnitRecord(selectedUnitCode);
-        
-        record.setAsg1(asg1Mark);
-        record.setAsg2(asg2Mark);
-        record.setExam(examMark);
-        
-        StudentUnitRecordManager.instance().saveRecord(record);
+
+        record.setAsg1Mark(asg1Mark);
+        record.setAsg2Mark(asg2Mark);
+        record.setExamMark(examMark);
+
+        StudentUnitRecordManager.getInstance().saveRecord(record);
         userInterface.setChangeMarksButtonEnabled(true);
         userInterface.setMarksTextFieldsEnabled(false);
         userInterface.setSaveChangesButtonEnabled(false);
